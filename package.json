@@ -1,0 +1,60 @@
+{
+  "name": "pixel-art-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "ava": "^0.19.1",
+    "immutable": "^3.8.1",
+    "nyc": "^10.3.2",
+    "ramda": "^0.23.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-localstorage": "^0.4.1"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.5.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^2.8.2",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.1",
+    "jsx-test-helpers": "^1.1.0",
+    "react-addons-test-utils": "^15.5.1",
+    "react-scripts": "1.0.2",
+    "redux-mock-store": "^1.2.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "nyc ava --verbose",
+    "test-report": "nyc report --reporter=html",
+    "eject": "react-scripts eject",
+    "start-optimised": "yarn run build; yarn global add serve; serve -s build"
+  },
+  "ava": {
+    "files": [
+      "tests/*.test.js"
+    ],
+    "source": [
+      "src/**/*.{js,jsx}",
+      "!dist/**/*"
+    ],
+    "modules": false,
+    "concurrency": 5,
+    "failFast": true,
+    "powerAssert": true,
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "@ava/stage-4"
+    ]
+  }
+}

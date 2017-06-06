@@ -1,1 +1,1 @@
-export const ACTION_TEMPLATE = 'ACTION_TEMPLATE';
+export const CHANGE_MODE = 'CHANGE_MODE';

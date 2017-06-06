@@ -1,7 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 
-
-export const actionTemplate = ({ }) => ({
-    type: actionTypes.ACTION_TEMPLATE,
-    payload: {  }
+export const changeMode = ({ mode }) => ({
+    type: actionTypes.CHANGE_MODE,
+    payload: { mode }
 });

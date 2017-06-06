@@ -2,43 +2,39 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 import * as actions from '../actions';
 
 
-const Navigation = ({ navigation }) => {
+const Navigation = ({ navigation, actions }) => {
+    const tabs = [];
     const tabsClass = `ui three item stackable tabs menu`;
+    const tabNames = {
+        learn: '1) Learn Mnemonic Major System',
+        challenge: '2) Create words from numbers',
+        test: '3) Play Digit span'
+    };
 
-    const changeMode = ({ mode }) => {
-        return actions.changeMode({ mode });
-    }
+    Object.keys(tabNames).forEach((tabName, i) => {
+        tabs.push(
+            <Link to={tabName}
+                  key={i}
+                  data-tab={tabName}
+                  className={navigation.mode === tabName ? "active item" : "item"}
+                  onClick={() => actions.changeMode({ mode: tabName })}>
 
-    return (
-        <div className={tabsClass}>
-            <a className={navigation.mode === 'learn' ? "active item" : "item"}
-               data-tab="learn"
-               onClick={() => changeMode({ mode: 'learn' })}>
+               {tabNames[tabName]}
+            </Link>
+        );
+    });
 
-               1) Learn Mnemonic Major System
-            </a>
-            <a className={navigation.mode === 'challenge' ? "active item" : "item"}
-               data-tab="challenge"
-               onClick={() => actions.changeMode({ mode: 'challenge' })}>
-
-               2) Create words from numbers
-            </a>
-            <a className={navigation.mode === 'test' ? "active item" : "item"}
-               data-tab="test"
-               onClick={() => actions.changeMode({ mode: 'test' })}>
-
-               3) Play Digit Span
-            </a>
-        </div>
-    );
+    return <div className={tabsClass}>{tabs}</div>;
 };
 
 Navigation.propTypes = {
-    navigation: PropTypes.object.isRequired
+    navigation: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({

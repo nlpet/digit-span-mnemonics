@@ -3,11 +3,15 @@
 const initialState = {
 
     navigation: {
-        mode: 'test'
+        mode: 'learn'
     },
 
-    games: {
 
+    games: {
+        modes: ['learn', 'challenge', 'test'],
+        learn: 'Learn placeholder',
+        challenge: 'Challenge placeholder',
+        test: 'Test placeholder'
     }
 };
 

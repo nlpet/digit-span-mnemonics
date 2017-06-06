@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Game from '../containers/Game';
+
+import Games from '../containers/Games';
 import Navigation from '../containers/Navigation';
 
-// eslint-disable-next-line react/prop-types
+
 const App = () => {
     return (
         <div className="ui container">
@@ -24,7 +25,7 @@ const App = () => {
                 </ul>
             </div>
             <Navigation />
-            <Game />
+            <Games />
         </div>
     );
 };
@@ -32,6 +33,5 @@ const App = () => {
 App.PropTypes = {
     match: PropTypes.string
 };
-
 
 export default App;

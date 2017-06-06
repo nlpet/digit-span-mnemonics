@@ -9,23 +9,25 @@ import Challenge from './Challenge';
 import Testing from './Testing';
 
 
-const Game = ({ navigation }) => {
-    const games = {
+const Games = ({ navigation, games }) => {
+    const gamesObj = {
         learn: <Learn />,
         challenge: <Challenge />,
         test: <Testing />
     };
-    return <div>{games[navigation.mode]}</div>;
+
+    return <div>{gamesObj[navigation.mode]}</div>;
 };
 
 
-Game.propTypes = {
-    navigation: PropTypes.object.isRequired
+Games.propTypes = {
+    navigation: PropTypes.object.isRequired,
+    games: PropTypes.object.isRequired
 };
 
 
 const mapStateToProps = (state) => ({
-    navigation: state.navigation
+    ...state
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -36,4 +38,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Game);
+)(Games);

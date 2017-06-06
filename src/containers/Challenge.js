@@ -1,22 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import * as actions from '../actions';
 
 
-const Challenge = () => {
-    return <div>Challenge</div>;
+const Challenge = ({ games }) => {
+    return <div>{games.challenge}</div>;
 };
 
 
 Challenge.propTypes = {
+    games: PropTypes.object.isRequired
 };
 
 
 const mapStateToProps = (state) => ({
-    navigation: state.navigation
+    ...state
 });
 
 const mapDispatchToProps = (dispatch) => ({

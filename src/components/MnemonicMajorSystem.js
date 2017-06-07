@@ -93,6 +93,10 @@ const MnemonicMajorSystem = () => {
                     </Table.Row>
                 </Table.Body>
             </Table>
+        <p>
+            Fore more information, have a look at the
+            <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system"> wiki article</a>.
+        </p>
         </div>
     )
 };

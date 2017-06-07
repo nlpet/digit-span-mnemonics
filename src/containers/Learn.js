@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Accordion } from 'semantic-ui-react';
 
 import * as actions from '../actions';
+import Practice from '../containers/Practice';
 import MnemonicMajorSystem from '../components/MnemonicMajorSystem';
 import Cards from '../components/Cards';
 
@@ -21,7 +22,7 @@ const Learn = ({ games }) => {
         },
         {
             title: 'Practice',
-            content: 'Learn game...'
+            content: <Practice />
         }
     ];
 

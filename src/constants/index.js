@@ -14,6 +14,16 @@ const initialState = {
         wrongAnswers: 0
     },
 
+    challenge: {
+        inProgress: false,
+        time: 60,
+        correctAnswers: 0,
+        wrongAnswers: 0,
+        intervalId: null,
+        answers: [],
+        paused: false
+    },
+
     games: {
         modes: ['learn', 'challenge', 'test'],
         learn: 'Learn placeholder',

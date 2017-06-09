@@ -10,7 +10,27 @@ export const startPractice = () => ({
     payload: { }
 });
 
-export const markAnswer = ({ correct }) => ({
-    type: actionTypes.MARK_ANSWER,
+export const startChallenge = ({ timer }) => ({
+    type: actionTypes.START_CHALLENGE,
+    payload: { timer }
+});
+
+export const markPracticeAnswer = ({ correct }) => ({
+    type: actionTypes.MARK_PRACTICE_ANSWER,
     payload: { correct }
+});
+
+export const markChallengeAnswer = ({ correct, answer }) => ({
+    type: actionTypes.MARK_CHALLENGE_ANSWER,
+    payload: { correct, answer }
+});
+
+export const timerTick = () => ({
+    type: actionTypes.TIMER_TICK,
+    payload: { }
+});
+
+export const toggleTimer = () => ({
+    type: actionTypes.TOGGLE_TIMER,
+    payload: { }
 });

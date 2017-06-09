@@ -62,7 +62,6 @@ function getRandomInteger (n) {
 function generateStep () {
     const x = getRandomInteger(2);
 
-    console.log(x);
     if (x === 1) {
         const num = getRandomInteger(keys(numeralToLetterAssociation).length);
 
@@ -75,8 +74,6 @@ function generateStep () {
     const letters = keys(lettersAndSoundsTonumerals);
     const randomInteger = getRandomInteger(letters.length);
     const letter = letters[randomInteger];
-
-    console.log(letters, randomInteger, letter)
 
     return {
         question: `What number is associated with ${letter}?`,

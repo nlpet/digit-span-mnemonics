@@ -7,7 +7,6 @@ import * as actions from '../actions';
 
 
 const Testing = ({ games }) => {
-    console.log('Testing', games);
     return <div>{games.test}</div>;
 };
 

@@ -31,7 +31,7 @@ const Practice = ({ games, learn, actions }) => {
             }
 
             answerElement.value = '';
-            return actions.markAnswer({ correct });
+            return actions.markPracticeAnswer({ correct });
         };
 
         const handleKeyPress = (e) => {

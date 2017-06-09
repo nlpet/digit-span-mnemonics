@@ -2,7 +2,7 @@ import { merge } from 'ramda';
 
 import {
     START_PRACTICE,
-    MARK_ANSWER
+    MARK_PRACTICE_ANSWER
 } from '../constants/actionTypes';
 
 
@@ -15,8 +15,7 @@ const learn = (state = {}, action) => {
                 correctAnswers: 0,
                 wrongAnswers: 0
             });
-        case MARK_ANSWER:
-            console.log('MARK_ANSWER', state, action.payload);
+        case MARK_PRACTICE_ANSWER:
             return merge(state, {
                 numQuestion: state.numQuestion + 1,
                 correctAnswers: state.correctAnswers + action.payload.correct,

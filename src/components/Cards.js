@@ -86,7 +86,13 @@ const Cards = () => {
                         /h/, /j/, /w/,
                         <a href="https://en.wikipedia.org/wiki/English_phonology#Vowels"> <u>vowel sounds</u></a>
                     </Card.Meta>
-                    <Card.Description>p, b, gh (in hiccough)</Card.Description>
+                    <Card.Description>
+                        h, y, w, a, e, i, o, u, silent letters,
+                        c (in packet and chutzpah), d (in judge),
+                        j (in Hallelujah and jalapeno), ll (in tortilla),
+                        the first p in sapphire, t (in match), one of doubled
+                        letters in most contexts
+                    </Card.Description>
                 </Card.Content>
             </Card>
             <Card>

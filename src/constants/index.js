@@ -6,6 +6,13 @@ const initialState = {
         mode: 'learn'
     },
 
+    learn: {
+        inProgress: false,
+        numQuestion: 0,
+        questionsInSession: 5,
+        correctAnswers: 0,
+        wrongAnswers: 0
+    },
 
     games: {
         modes: ['learn', 'challenge', 'test'],

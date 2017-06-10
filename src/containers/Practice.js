@@ -29,7 +29,7 @@ const Practice = ({ games, learn, actions }) => {
             } else {
                 correct = contains(answer, currentQuestion.answer) ? 1 : 0;
             }
-
+            console.log('checkAnswer', correct, answer, currentQuestion);
             answerElement.value = '';
             return actions.markPracticeAnswer({ correct, answer, correctAnswer: currentQuestion.answer });
         };

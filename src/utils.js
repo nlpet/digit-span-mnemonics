@@ -1,9 +1,9 @@
-import { keys, map, range, sum, head } from 'ramda';
+import { keys, map, range, sum, head, countBy } from 'ramda';
 import { fromJS } from 'immutable';
 
 const numToLettersAndSounds = {
     0: ['s', 'soft c', 'z', 'x'],
-    1: ['t', 'd'],
+    1: ['t', 'd', 'th'],
     2: ['n'],
     3: ['m'],
     4: ['r', 'l'],
@@ -20,7 +20,7 @@ const numToLettersAndSounds = {
 
 const numToLetter = fromJS({
     0: ['s', 'c', 'z', 'x'],
-    1: ['t', 'd'],
+    1: ['t', 'd', 'th'],
     2: ['n'],
     3: ['m'],
     4: ['r', 'l'],
@@ -37,7 +37,7 @@ const numToLetter = fromJS({
 
 const letterToNum = fromJS({
     s: 0, c: 0, z: 0, x: 0,
-    t: 1, d: 1,
+    t: 1, d: 1, th: 1,
     n: 2,
     m: 3,
     r: 4,
@@ -45,21 +45,9 @@ const letterToNum = fromJS({
     ch: 6, j: 6, g: 6, sh: 6,
     cz: 6, sc: 6, sch: 6, tsch: 6,
     k: 7, q: 7,
-    f: 8, ph: 8, v: 8, gh: 8
+    f: 8, ph: 8, v: 8, gh: 8,
+    p: 9, b: 9
 });
-
-const answersAndHints = {
-    0: 'Answer is 0. Hint: zero vertical strokes',
-    1: 'Answer is 1. Hint: one vertical stroke',
-    2: 'Answer is 2. Hint: two vertical strokes',
-    3: 'Answer is 3. Hint: three vertical strokes',
-    4: 'Answer is 4. Hint: four ends with r',
-    5: 'Answer is 5. Hint: L is the Roman numeral for 50',
-    6: 'Answer is 6. Hint: looks like flipped g',
-    7: 'Answer is 7. Hint: k look like two small 7s on their sides',
-    8: 'Answer is 8. Hint: script f looks like a figure-8',
-    9: 'Answer is 9. Hint: p looks like 9 flipped horizontally, b looks like the 9 turned 180°'
-};
 
 const lettersAndSoundsToNums = {
     's': '0',
@@ -67,7 +55,8 @@ const lettersAndSoundsToNums = {
     'z': '0',
     'x (in xylophone)': '0',
     't': '1',
-    'd (th in thing and this)': '1',
+    'd': '1',
+    'th (in thing and this)': 1,
     'n': '2',
     'm': '3',
     'r': '4',
@@ -98,6 +87,19 @@ const lettersAndSoundsToNums = {
     'b': '9',
     'gh (in hiccough)': '9'
 };
+
+const answersAndHints = fromJS({
+    0: 'Answer is 0. Hint: zero vertical strokes',
+    1: 'Answer is 1. Hint: one vertical stroke',
+    2: 'Answer is 2. Hint: two vertical strokes',
+    3: 'Answer is 3. Hint: three vertical strokes',
+    4: 'Answer is 4. Hint: four ends with r',
+    5: 'Answer is 5. Hint: L is the Roman numeral for 50',
+    6: 'Answer is 6. Hint: looks like flipped g',
+    7: 'Answer is 7. Hint: k look like two small 7s on their sides',
+    8: 'Answer is 8. Hint: script f looks like a figure-8',
+    9: 'Answer is 9. Hint: p looks like 9 flipped horizontally, b looks like the 9 turned 180°'
+});
 
 function getRandomInteger (n) {
     return Math.floor(Math.random() * n);
@@ -133,15 +135,24 @@ function generateLevels () {
     return map(n => ({ key: n, value: n, text: n }), range(2, 10));
 }
 
+function findMatches (letter, string) {
+    const reg = new RegExp(letter, 'g');
+    const match = string.match(reg);
+    return match ? match.length : 0;
+}
+
+
 function verifyAnswer (answer, challengeNumber) {
     let flag = true;
     const answr = answer.replace(/[hywaeiou]/g, '');
+    const challengeNum = challengeNumber.replace(/[\s]/g, '');
+    const uniqueNums = countBy(x => x)(challengeNum);
 
     challengeNumber.split(' ').forEach(num => {
         const letters = numToLetter.get(num);
-        const matches = sum(letters.map(l => answr.indexOf(l) >= 0 ? 1 : 0));
+        const matches = sum(letters.map(l => findMatches(l, answr)));
 
-        if (matches === 0) flag = false;
+        if (matches !== uniqueNums[num]) flag = false;
     });
 
     return flag;
@@ -149,12 +160,12 @@ function verifyAnswer (answer, challengeNumber) {
 
 function getHint (answer) {
     if (typeof answer === 'string') {
-        return answersAndHints[answer];
+        return answersAndHints.get(answer, `No hint available for ${answer} :()`);
     }
 
     const first = head(answer);
-    const num = letterToNum.get(first);
-    return answersAndHints[num];
+    const num = letterToNum.get(first).toString();
+    return answersAndHints.get(num, `No hint available for ${num} :o`);
 }
 
 export {

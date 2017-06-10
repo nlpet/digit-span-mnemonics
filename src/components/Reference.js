@@ -4,24 +4,7 @@ import { Table } from "semantic-ui-react";
 const Reference = () => {
     return (
         <div>
-            <h2>Mnemonic major system</h2>
-            <p>
-                The major system (also called the phonetic number system,
-                phonetic mnemonic system, or Herigone's mnemonic system) is a
-                mnemonic technique used to aid in memorizing numbers.
-            </p>
-            <p>
-                The system works by converting numbers into consonant sounds,
-                then into words by adding vowels. The system works on the principle
-                that images can be remembered more easily than numbers.
-            </p>
-            <h2>The system</h2>
-            <p>
-                Each numeral is associated with one or more consonants.
-                Vowels and the consonants w, h, and y are ignored. These can
-                be used as "fillers" to make sensible words from the resulting
-                consonant sequences. A standard mapping is:
-            </p>
+            <h2>The Mnemonic Major System (in a nutshell)</h2>
             <Table celled>
                 <Table.Header>
                     <Table.Row>
@@ -179,6 +162,11 @@ const Reference = () => {
         <p>
             Fore more information, have a look at the
             <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system"> wiki article</a>.
+        </p>
+        <p>
+            Also consider taking Memrise's
+            <a href="https://www.memrise.com/course/43909/the-mnemonic-major-system/"> course </a>
+            for learning the The Mnemonic Major System (requires registration).
         </p>
         </div>
     )

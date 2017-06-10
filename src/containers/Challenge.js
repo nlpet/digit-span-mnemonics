@@ -65,8 +65,6 @@ const Challenge = ({ games, challenge, actions }) => {
             </List.Item>);
     });
 
-    console.log(`inProgress: ${inProgress}, time: ${time}, ended: ${ended}`);
-
     if (inProgress && time >= 0 && !ended) {
         challengeGame.push(
             <div key="challenge">

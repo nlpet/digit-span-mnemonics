@@ -15,9 +15,9 @@ export const startChallenge = ({ timer }) => ({
     payload: { timer }
 });
 
-export const markPracticeAnswer = ({ correct }) => ({
+export const markPracticeAnswer = ({ correct, answer, correctAnswer }) => ({
     type: actionTypes.MARK_PRACTICE_ANSWER,
-    payload: { correct }
+    payload: { correct, answer, correctAnswer }
 });
 
 export const markChallengeAnswer = ({ correct, answer }) => ({
@@ -42,5 +42,10 @@ export const changeDifficulty = ({ level }) => ({
 
 export const endChallenge = () => ({
     type: actionTypes.END_CHALLENGE,
+    payload: { }
+});
+
+export const toggleFeedback = () => ({
+    type: actionTypes.TOGGLE_FEEDBACK,
     payload: { }
 });

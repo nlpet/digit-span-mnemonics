@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import Games from '../containers/Games';
 import Navigation from '../containers/Navigation';
 
@@ -10,7 +9,7 @@ const App = () => {
     return (
         <div className="ui container">
             <br />
-            <h1 className="ui dividing header">DIGIT SPAN MNEMONICS</h1>
+            <h1 className="ui dividing header">Digit Span Mnemonics System (DSMS)</h1>
             <div className="ui info message">
                 <div className="header">Welcome!</div>
                 <ul className="list">

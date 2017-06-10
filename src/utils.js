@@ -1,4 +1,4 @@
-import { keys, map, range, sum } from 'ramda';
+import { keys, map, range, sum, head } from 'ramda';
 import { fromJS } from 'immutable';
 
 const numToLettersAndSounds = {
@@ -35,7 +35,33 @@ const numToLetter = fromJS({
     9: ['p', 'b', 'gh']
 });
 
-const lettersAndSoundsTonumerals = {
+const letterToNum = fromJS({
+    s: 0, c: 0, z: 0, x: 0,
+    t: 1, d: 1,
+    n: 2,
+    m: 3,
+    r: 4,
+    l: 5,
+    ch: 6, j: 6, g: 6, sh: 6,
+    cz: 6, sc: 6, sch: 6, tsch: 6,
+    k: 7, q: 7,
+    f: 8, ph: 8, v: 8, gh: 8
+});
+
+const answersAndHints = {
+    0: 'Answer is 0. Hint: zero vertical strokes',
+    1: 'Answer is 1. Hint: one vertical stroke',
+    2: 'Answer is 2. Hint: two vertical strokes',
+    3: 'Answer is 3. Hint: three vertical strokes',
+    4: 'Answer is 4. Hint: four ends with r',
+    5: 'Answer is 5. Hint: L is the Roman numeral for 50',
+    6: 'Answer is 6. Hint: looks like flipped g',
+    7: 'Answer is 7. Hint: k look like two small 7s on their sides',
+    8: 'Answer is 8. Hint: script f looks like a figure-8',
+    9: 'Answer is 9. Hint: p looks like 9 flipped horizontally, b looks like the 9 turned 180°'
+};
+
+const lettersAndSoundsToNums = {
     's': '0',
     'soft c': '0',
     'z': '0',
@@ -88,18 +114,18 @@ function generateStep () {
         const num = getRandomInteger(keys(numToLettersAndSounds).length);
 
         return {
-            question: `What is an associated letter (or sound) with ${num}?`,
+            text: `What is an associated letter (or sound) with ${num}?`,
             answer: numToLettersAndSounds[num]
         };
     }
 
-    const letters = keys(lettersAndSoundsTonumerals);
+    const letters = keys(lettersAndSoundsToNums);
     const randomInteger = getRandomInteger(letters.length);
     const letter = letters[randomInteger];
 
     return {
-        question: `What number is associated with ${letter}?`,
-        answer: lettersAndSoundsTonumerals[letter]
+        text: `What number is associated with ${letter}?`,
+        answer: lettersAndSoundsToNums[letter]
     };
 }
 
@@ -121,9 +147,20 @@ function verifyAnswer (answer, challengeNumber) {
     return flag;
 }
 
+function getHint (answer) {
+    if (typeof answer === 'string') {
+        return answersAndHints[answer];
+    }
+
+    const first = head(answer);
+    const num = letterToNum.get(first);
+    return answersAndHints[num];
+}
+
 export {
     generateStep,
     generateChallengeNumber,
     generateLevels,
-    verifyAnswer
+    verifyAnswer,
+    getHint
 };

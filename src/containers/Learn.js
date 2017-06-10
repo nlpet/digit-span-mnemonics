@@ -37,7 +37,7 @@ const Learn = ({ games }) => {
             </Header>
             <Accordion style={{ width: "100%" }}
                        panels={panels}
-                       defaultActiveIndex={-1} styled />
+                       defaultActiveIndex={2} styled />
         </div>
     );
 };

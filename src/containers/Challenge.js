@@ -99,8 +99,16 @@ const Challenge = ({ games, challenge, actions }) => {
         );
     } else if (ended) {
         const p = Math.ceil((correctAnswers / (correctAnswers + wrongAnswers)) * 100);
+        let face = '(╯°□°）╯︵ ┻━┻) ';
+        if (p >= 75) {
+            face = '◉‿◉';
+        } else if (p >= 50) {
+            face = '(-‿◦)';
+        } else if (p >= 25) {
+            face = '¯\\_(ツ)_/¯';
+        }
         const msg = `You got ${correctAnswers} words right, `;
-        const accuracy = `with ${ isNaN(p) ? 0 : p }% accuracy : ]`;
+        const accuracy = `with ${ isNaN(p) ? 0 : p }% accuracy ${face}`;
 
         challengeGame.push(
             <div key="game-over">
@@ -140,22 +148,21 @@ const Challenge = ({ games, challenge, actions }) => {
                               onChange={changeDifficulty} />
                     {challengeGame}
                 </Segment>
-                <Segment>
-                    {
-                        (inProgress && time >= 0) ?
-                            <div>
-                                <h2 style={{ marginBottom: "22px" }}>
-                                    {challengeNumber}
-                                </h2>
-                                <Divider />
-                                <h2>Timer: {time}</h2>
-                                <p>
-                                    <b>Accepted: {correctAnswers}</b><br />
-                                    <b>Rejected: {wrongAnswers}</b>
-                                </p>
-                            </div> : null
-                    }
-                </Segment>
+                { (inProgress && time >= 0) ?
+                    <Segment>
+                        <div>
+                            <h2 style={{ marginBottom: "22px" }}>
+                                {challengeNumber}
+                            </h2>
+                            <Divider />
+                            <h2>Timer: {time}</h2>
+                            <p>
+                                <b>Accepted: {correctAnswers}</b><br />
+                                <b>Rejected: {wrongAnswers}</b>
+                            </p>
+                        </div>
+                    </Segment> : null
+                }
             </Segment.Group>
         </div>
     );

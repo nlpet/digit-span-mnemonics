@@ -11,9 +11,12 @@ const initialState = {
     learn: {
         inProgress: false,
         numQuestion: 0,
-        questionsInSession: 5,
+        questionsInSession: 10,
         correctAnswers: 0,
-        wrongAnswers: 0
+        wrongAnswers: 0,
+        help: false,
+        currentQuestion: {},
+        lastAnswer: {}
     },
 
     challenge: {

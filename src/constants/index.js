@@ -1,4 +1,6 @@
+import { Set as set } from 'immutable';
 
+import { generateChallengeNumber } from '../utils';
 
 const initialState = {
 
@@ -21,7 +23,11 @@ const initialState = {
         wrongAnswers: 0,
         intervalId: null,
         answers: [],
-        paused: false
+        uniqueAnswers: set(),
+        paused: false,
+        difficulty: 3,
+        challengeNumber: generateChallengeNumber(3),
+        ended: false
     },
 
     games: {

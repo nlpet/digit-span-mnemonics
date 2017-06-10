@@ -1,6 +1,7 @@
-import { keys } from 'ramda';
+import { keys, map, range, sum } from 'ramda';
+import { fromJS } from 'immutable';
 
-const numeralToLetterAssociation = {
+const numToLettersAndSounds = {
     0: ['s', 'soft c', 'z', 'x'],
     1: ['t', 'd'],
     2: ['n'],
@@ -16,6 +17,23 @@ const numeralToLetterAssociation = {
     8: ['f', 'ph', 'v', 'gh'],
     9: ['p', 'b', 'gh']
 };
+
+const numToLetter = fromJS({
+    0: ['s', 'c', 'z', 'x'],
+    1: ['t', 'd'],
+    2: ['n'],
+    3: ['m'],
+    4: ['r', 'l'],
+    5: ['l'],
+    6: [
+        'ch', 'j', 'g', 'sh',
+        'c', 'cz', 's', 'sc', 'sch',
+        't', 'tsch', 'z'
+    ],
+    7: ['k', 'c', 'q', 'ch', 'g'],
+    8: ['f', 'ph', 'v', 'gh'],
+    9: ['p', 'b', 'gh']
+});
 
 const lettersAndSoundsTonumerals = {
     's': '0',
@@ -59,15 +77,19 @@ function getRandomInteger (n) {
     return Math.floor(Math.random() * n);
 }
 
+function generateChallengeNumber (n) {
+    return map(getRandomInteger, Array(n).fill(10)).join(' ');
+}
+
 function generateStep () {
     const x = getRandomInteger(2);
 
     if (x === 1) {
-        const num = getRandomInteger(keys(numeralToLetterAssociation).length);
+        const num = getRandomInteger(keys(numToLettersAndSounds).length);
 
         return {
             question: `What is an associated letter (or sound) with ${num}?`,
-            answer: numeralToLetterAssociation[num]
+            answer: numToLettersAndSounds[num]
         };
     }
 
@@ -81,7 +103,27 @@ function generateStep () {
     };
 }
 
+function generateLevels () {
+    return map(n => ({ key: n, value: n, text: n }), range(2, 10));
+}
+
+function verifyAnswer (answer, challengeNumber) {
+    let flag = true;
+    const answr = answer.replace(/[hywaeiou]/g, '');
+
+    challengeNumber.split(' ').forEach(num => {
+        const letters = numToLetter.get(num);
+        const matches = sum(letters.map(l => answr.indexOf(l) >= 0 ? 1 : 0));
+
+        if (matches === 0) flag = false;
+    });
+
+    return flag;
+}
 
 export {
-    generateStep
+    generateStep,
+    generateChallengeNumber,
+    generateLevels,
+    verifyAnswer
 };

@@ -34,3 +34,13 @@ export const toggleTimer = () => ({
     type: actionTypes.TOGGLE_TIMER,
     payload: { }
 });
+
+export const changeDifficulty = ({ level }) => ({
+    type: actionTypes.CHANGE_DIFFICULTY,
+    payload: { level }
+});
+
+export const endChallenge = () => ({
+    type: actionTypes.END_CHALLENGE,
+    payload: { }
+});

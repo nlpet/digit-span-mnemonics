@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { toLower, slice } from 'ramda';
 import {
-    Segment, Button, Input, List, Divider, Grid, Dropdown
+    Segment, Button, Input,
+    List, Divider, Grid,
+    Dropdown, Header
 } from 'semantic-ui-react';
 
 import * as actions from '../actions';
@@ -109,44 +111,53 @@ const Challenge = ({ games, challenge, actions }) => {
     }
 
     return (
-        <Segment.Group horizontal key="challenge">
-            <Segment>
-                <Button color="purple"
-                        onClick={startChallenge}>
-                    New game
-                </Button>
-                <Button color="red"
-                        onClick={actions.endChallenge}>
-                    End game
-                </Button>
-                { inProgress ?
-                    <Button color="yellow" onClick={actions.toggleTimer}>
-                        {paused ? "Resume" : "Pause"}
-                    </Button> : null
-                }
-                <Dropdown selection disabled={inProgress}
-                          placeholder="difficulty"
-                          options={levels}
-                          onChange={changeDifficulty} />
-                {challengeGame}
-            </Segment>
-            <Segment>
-                {
-                    (inProgress && time >= 0) ?
-                        <div>
-                            <h2 style={{ marginBottom: "22px" }}>
-                                {challengeNumber}
-                            </h2>
-                            <Divider />
-                            <h2>Timer: {time}</h2>
-                            <p>
-                                <b>Accepted: {correctAnswers}</b><br />
-                                <b>Rejected: {wrongAnswers}</b>
-                            </p>
-                        </div> : null
-                }
-            </Segment>
-        </Segment.Group>
+        <div>
+            <Header as="h2">
+                Challenge Mode
+                <Header.Subheader>
+                    Play a game which will test the strength of your association
+                    with the numbers and your ability to form words quickly.
+                </Header.Subheader>
+            </Header>
+            <Segment.Group horizontal key="challenge">
+                <Segment>
+                    <Button color="purple"
+                            onClick={startChallenge}>
+                        New game
+                    </Button>
+                    <Button color="red"
+                            onClick={actions.endChallenge}>
+                        End game
+                    </Button>
+                    { inProgress ?
+                        <Button color="yellow" onClick={actions.toggleTimer}>
+                            {paused ? "Resume" : "Pause"}
+                        </Button> : null
+                    }
+                    <Dropdown selection disabled={inProgress}
+                              placeholder="difficulty"
+                              options={levels}
+                              onChange={changeDifficulty} />
+                    {challengeGame}
+                </Segment>
+                <Segment>
+                    {
+                        (inProgress && time >= 0) ?
+                            <div>
+                                <h2 style={{ marginBottom: "22px" }}>
+                                    {challengeNumber}
+                                </h2>
+                                <Divider />
+                                <h2>Timer: {time}</h2>
+                                <p>
+                                    <b>Accepted: {correctAnswers}</b><br />
+                                    <b>Rejected: {wrongAnswers}</b>
+                                </p>
+                            </div> : null
+                    }
+                </Segment>
+            </Segment.Group>
+        </div>
     );
 };
 

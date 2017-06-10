@@ -15,7 +15,8 @@ const App = () => {
                 <div className="header">Welcome!</div>
                 <ul className="list">
                     <p>
-                        This app will train you to associate numbers with letters
+                        This app will train you to associate the digits 0-9 with
+                        certain letters of the alphabet (excluding vowels and semi-vowels),
                         using the Mnemonic major system. When the association becomes innate,
                         it will challenge you to create words quickly by inserting vowels
                         in between the letters. This conversion to letters -> words should

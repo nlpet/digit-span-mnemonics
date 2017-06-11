@@ -1,6 +1,6 @@
 import { Set as set } from 'immutable';
 
-import { generateChallengeNumber } from '../utils';
+import { generateLevels } from '../utils';
 
 const initialState = {
 
@@ -16,7 +16,8 @@ const initialState = {
         wrongAnswers: 0,
         help: false,
         currentQuestion: {},
-        lastAnswer: {}
+        lastAnswer: {},
+        ended: false
     },
 
     challenge: {
@@ -29,8 +30,29 @@ const initialState = {
         uniqueAnswers: set(),
         paused: false,
         difficulty: 3,
-        challengeNumber: generateChallengeNumber(3),
-        ended: false
+        challengeNumber: null,
+        ended: false,
+        levels: generateLevels(2, 11)
+    },
+
+    testing: {
+        rounds: 10,
+        intervalId: null,
+        inProgress: false,
+        numberOfDigits: 5,
+        difficulty: 'easy',
+        time: 5,
+        challengeNumber: null,
+        range: generateLevels(3, 31),
+        difficulties: [
+            { key: 'easy', value: 'easy', text: 'easy' },
+            { key: 'medium', value: 'medium', text: 'medium' },
+            { key: 'hard', value: 'hard', text: 'hard' },
+            { key: 'impossible', value: 'impossible', text: 'impossible' }
+        ],
+        ended: false,
+        correctAnswers: 0,
+        wrongAnswers: 0
     },
 
     games: {

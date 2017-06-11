@@ -9,16 +9,17 @@ import {
 } from 'semantic-ui-react';
 
 import * as actions from '../actions';
+import { getEmoji } from '../utils';
 
 
 const Practice = ({ games, learn, actions }) => {
     const {
         numQuestion, questionsInSession, currentQuestion,
-        correctAnswers, wrongAnswers, inProgress
+        correctAnswers, wrongAnswers, inProgress, ended
     } = learn;
     const practiceGame = [];
 
-    if (inProgress) {
+    if (inProgress && numQuestion < questionsInSession) {
         const checkAnswer = () => {
             let correct;
             const answerElement = document.getElementById("practiceAnswer");
@@ -29,7 +30,7 @@ const Practice = ({ games, learn, actions }) => {
             } else {
                 correct = contains(answer, currentQuestion.answer) ? 1 : 0;
             }
-            console.log('checkAnswer', correct, answer, currentQuestion);
+
             answerElement.value = '';
             return actions.markPracticeAnswer({ correct, answer, correctAnswer: currentQuestion.answer });
         };
@@ -38,48 +39,51 @@ const Practice = ({ games, learn, actions }) => {
             if (e.key === 'Enter') checkAnswer();
         };
 
-        if (numQuestion < questionsInSession) {
-            practiceGame.push(
-                <Segment.Group horizontal key="practice">
-                    <Segment>
-                        <h3>{currentQuestion.text}</h3>
-                        <Input style={{ marginRight: "10px" }}
-                               placeholder="Answer..."
-                               onKeyPress={handleKeyPress}
-                               id="practiceAnswer" />
-                        <Button color="green" onClick={checkAnswer}>Submit</Button>
-                    </Segment>
-                    <Segment>
-                        <p>
-                            <b>Correct: {correctAnswers}</b><br />
-                            <b>Wrong: {wrongAnswers}</b>
-                        </p>
-                        { learn.feedback && learn.inProgress && learn.lastAnswer.correct === 0 ?
-                            <div>
-                                <Divider />
-                                <Message positive size="tiny">
-                                  <p>{learn.lastAnswer.hint}</p>
-                                </Message>
-                            </div> : null
-                        }
-                    </Segment>
-                </Segment.Group>
-            );
-        } else {
-            const face = correctAnswers >= (questionsInSession / 2) ? ': ]' : ': [';
-            const msg = `You got ${correctAnswers} answers right! ${face}`;
-            practiceGame.push(
-                <div key="game-over">
-                    <Divider />
-                    <p>Game over! You got { msg }</p>
-                </div>
-            );
-        }
+        practiceGame.push(
+            <Segment.Group horizontal key="practice">
+                <Segment>
+                    <h3>{currentQuestion.text}</h3>
+                    <Input style={{ marginRight: "10px" }}
+                           placeholder="Answer..."
+                           onKeyPress={handleKeyPress}
+                           id="practiceAnswer" />
+                    <Button color="green" onClick={checkAnswer}>Submit</Button>
+                </Segment>
+                <Segment>
+                    <p>
+                        <b>Correct: {correctAnswers}</b><br />
+                        <b>Wrong: {wrongAnswers}</b>
+                    </p>
+                    { learn.feedback && learn.inProgress && learn.lastAnswer.correct === 0 ?
+                        <div>
+                            <Divider />
+                            <Message positive size="tiny">
+                              <p>{learn.lastAnswer.hint}</p>
+                            </Message>
+                        </div> : null
+                    }
+                </Segment>
+            </Segment.Group>
+        );
+    } else if (ended) {
+        const p = Math.ceil((correctAnswers / (correctAnswers + wrongAnswers)) * 100);
+        const face = getEmoji(p);
+        const msg = `You got ${correctAnswers} answers right! ${face}`;
+
+        practiceGame.push(
+            <div key="game-over">
+                <Divider />
+                <p>Game over! You got { msg }</p>
+            </div>
+        );
     }
 
     return (
         <div>
             <Button color="purple" onClick={actions.startPractice}>New game</Button>
+            <Button color="red" onClick={actions.endPractice}>
+                End game
+            </Button>
             <Button.Group>
                 <Button positive={!learn.feedback} onClick={actions.toggleFeedback}>
                     Feedback Off

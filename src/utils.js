@@ -131,8 +131,8 @@ function generateStep () {
     };
 }
 
-function generateLevels () {
-    return map(n => ({ key: n, value: n, text: n }), range(2, 10));
+function generateLevels (s, e) {
+    return map(n => ({ key: n, value: n, text: n }), range(s, e));
 }
 
 function findMatches (letter, string) {
@@ -168,10 +168,35 @@ function getHint (answer) {
     return answersAndHints.get(num, `No hint available for ${num} :o`);
 }
 
+function setDifficulty (difficulty, numberOfDigits) {
+    console.log('setDifficulty', difficulty, numberOfDigits);
+    if (difficulty === 'easy') return numberOfDigits;
+    if (difficulty === 'medium') return Math.ceil(numberOfDigits * 0.70);
+    if (difficulty === 'hard') return Math.ceil(numberOfDigits * 0.40);
+
+    return Math.ceil(numberOfDigits * 0.10);
+}
+
+function getEmoji (p) {
+    let face = '(╯°□°）╯︵ ┻━┻) ';
+
+    if (p >= 75) {
+        face = '◉‿◉';
+    } else if (p >= 50) {
+        face = '(-‿◦)';
+    } else if (p >= 25) {
+        face = '¯\\_(ツ)_/¯';
+    }
+
+    return face;
+}
+
 export {
     generateStep,
     generateChallengeNumber,
     generateLevels,
     verifyAnswer,
-    getHint
+    getHint,
+    setDifficulty,
+    getEmoji
 };

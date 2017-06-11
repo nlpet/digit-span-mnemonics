@@ -3,7 +3,8 @@ import { merge } from 'ramda';
 import {
     START_PRACTICE,
     MARK_PRACTICE_ANSWER,
-    TOGGLE_FEEDBACK
+    TOGGLE_FEEDBACK,
+    END_PRACTICE
 } from '../constants/actionTypes';
 
 import { getHint, generateStep } from '../utils';
@@ -14,12 +15,19 @@ const learn = (state = {}, action) => {
         case START_PRACTICE:
             return merge(state, {
                 inProgress: true,
+                ended: false,
                 numQuestion: 0,
                 correctAnswers: 0,
                 wrongAnswers: 0,
                 lastAnswer: {},
                 currentQuestion: generateStep()
             });
+        case END_PRACTICE:
+            if (state.inProgress) {
+                return merge(state, { inProgress: false, ended: true });
+            }
+
+            return state;
         case MARK_PRACTICE_ANSWER:
             return merge(state, {
                 numQuestion: state.numQuestion + 1,

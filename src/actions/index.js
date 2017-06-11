@@ -25,8 +25,18 @@ export const markChallengeAnswer = ({ correct, answer }) => ({
     payload: { correct, answer }
 });
 
-export const timerTick = () => ({
-    type: actionTypes.TIMER_TICK,
+export const markTestAnswer = ({ correct }) => ({
+    type: actionTypes.MARK_TEST_ANSWER,
+    payload: { correct }
+})
+
+export const challengeTimerTick = () => ({
+    type: actionTypes.CHALLENGE_TIMER_TICK,
+    payload: { }
+});
+
+export const testTimerTick = () => ({
+    type: actionTypes.TEST_TIMER_TICK,
     payload: { }
 });
 
@@ -35,9 +45,19 @@ export const toggleTimer = () => ({
     payload: { }
 });
 
-export const changeDifficulty = ({ level }) => ({
-    type: actionTypes.CHANGE_DIFFICULTY,
+export const changeChallengeDifficulty = ({ level }) => ({
+    type: actionTypes.CHANGE_CHALLENGE_DIFFICULTY,
     payload: { level }
+});
+
+export const changeTestDifficulty = ({ difficulty }) => ({
+    type: actionTypes.CHANGE_TEST_DIFFICULTY,
+    payload: { difficulty }
+});
+
+export const setNumberOfDigits = ({ numberOfDigits }) => ({
+    type: actionTypes.SET_NUMBER_OF_DIGITS,
+    payload: { numberOfDigits }
 });
 
 export const endChallenge = () => ({
@@ -45,7 +65,22 @@ export const endChallenge = () => ({
     payload: { }
 });
 
+export const endPractice = () => ({
+    type: actionTypes.END_PRACTICE,
+    payload: { }
+});
+
 export const toggleFeedback = () => ({
     type: actionTypes.TOGGLE_FEEDBACK,
+    payload: { }
+});
+
+export const startTest = ({ timer }) => ({
+    type: actionTypes.START_TEST,
+    payload: { timer }
+});
+
+export const endTest = () => ({
+    type: actionTypes.END_TEST,
     payload: { }
 });

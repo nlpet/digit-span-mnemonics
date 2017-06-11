@@ -4,8 +4,8 @@ import { Set as set } from 'immutable';
 import { generateChallengeNumber } from '../utils';
 
 import {
-    START_CHALLENGE, TIMER_TICK, MARK_CHALLENGE_ANSWER,
-    TOGGLE_TIMER, CHANGE_DIFFICULTY, END_CHALLENGE
+    START_CHALLENGE, CHALLENGE_TIMER_TICK, MARK_CHALLENGE_ANSWER,
+    TOGGLE_TIMER, CHANGE_CHALLENGE_DIFFICULTY, END_CHALLENGE
 } from '../constants/actionTypes';
 
 const challenge = (state = {}, action) => {
@@ -39,7 +39,7 @@ const challenge = (state = {}, action) => {
             }
 
             return state;
-        case TIMER_TICK:
+        case CHALLENGE_TIMER_TICK:
             if (state.time === 0) {
                 clearInterval(state.intervalId);
                 return merge(state, { time: 0, ended: true, inProgress: false });
@@ -64,8 +64,7 @@ const challenge = (state = {}, action) => {
                     }
                 ]
             });
-        case CHANGE_DIFFICULTY:
-            console.log('CHANGE_DIFFICULTY', action.payload);
+        case CHANGE_CHALLENGE_DIFFICULTY:
             return merge(state, {
                 difficulty: action.payload.level
             });

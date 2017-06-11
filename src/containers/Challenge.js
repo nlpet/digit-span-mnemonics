@@ -10,20 +10,19 @@ import {
 } from 'semantic-ui-react';
 
 import * as actions from '../actions';
-import { generateLevels, verifyAnswer } from '../utils';
+import { verifyAnswer, getEmoji } from '../utils';
 
 
-const Challenge = ({ games, challenge, actions }) => {
-    const levels = generateLevels();
+const Challenge = ({ challenge, actions }) => {
+    let challengeGame;
     const answersList = [];
     const {
         inProgress, time, correctAnswers, ended, uniqueAnswers,
-        wrongAnswers, answers, paused, challengeNumber
+        wrongAnswers, answers, paused, challengeNumber, levels
     } = challenge;
-    const challengeGame = [];
     const len = answers.length > 15 ? Math.ceil(answers.length / 3) : 5;
 
-    const timer = () => actions.timerTick();
+    const timer = () => actions.challengeTimerTick();
 
     const checkAnswer = () => {
         const answerElement = document.getElementById("challengeAnswer");
@@ -39,16 +38,12 @@ const Challenge = ({ games, challenge, actions }) => {
         return false;
     };
 
-    const startChallenge = () => {
-        return actions.startChallenge({ timer });
-    };
-
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') checkAnswer();
     };
 
     const changeDifficulty = (e, data) => {
-        actions.changeDifficulty({ level: data.value });
+        return actions.changeChallengeDifficulty({ level: data.value });
     };
 
     answers.forEach((item, i) => {
@@ -66,8 +61,8 @@ const Challenge = ({ games, challenge, actions }) => {
     });
 
     if (inProgress && time >= 0 && !ended) {
-        challengeGame.push(
-            <div key="challenge">
+        challengeGame = (
+            <div>
                 <Divider />
                 <Grid columns={3}>
                     <Grid.Column>
@@ -97,19 +92,13 @@ const Challenge = ({ games, challenge, actions }) => {
         );
     } else if (ended) {
         const p = Math.ceil((correctAnswers / (correctAnswers + wrongAnswers)) * 100);
-        let face = '(╯°□°）╯︵ ┻━┻) ';
-        if (p >= 75) {
-            face = '◉‿◉';
-        } else if (p >= 50) {
-            face = '(-‿◦)';
-        } else if (p >= 25) {
-            face = '¯\\_(ツ)_/¯';
-        }
+        const face = getEmoji(p);
+
         const msg = `You got ${correctAnswers} words right, `;
         const accuracy = `with ${ isNaN(p) ? 0 : p }% accuracy ${face}`;
 
-        challengeGame.push(
-            <div key="game-over">
+        challengeGame = (
+            <div>
                 <Divider />
                 <p>Game over! { msg } { accuracy }</p>
             </div>
@@ -128,11 +117,10 @@ const Challenge = ({ games, challenge, actions }) => {
             <Segment.Group horizontal key="challenge">
                 <Segment>
                     <Button color="purple"
-                            onClick={startChallenge}>
+                            onClick={() => actions.startChallenge({ timer })}>
                         New game
                     </Button>
-                    <Button color="red"
-                            onClick={actions.endChallenge}>
+                    <Button color="red" onClick={actions.endChallenge}>
                         End game
                     </Button>
                     { inProgress ?
@@ -153,7 +141,7 @@ const Challenge = ({ games, challenge, actions }) => {
                                 {challengeNumber}
                             </h2>
                             <Divider />
-                            <h2>Timer: {time}</h2>
+                            <h2>Time: {time}</h2>
                             <p>
                                 <b>Accepted: {correctAnswers}</b><br />
                                 <b>Rejected: {wrongAnswers}</b>
@@ -168,7 +156,6 @@ const Challenge = ({ games, challenge, actions }) => {
 
 
 Challenge.propTypes = {
-    games: PropTypes.object.isRequired,
     challenge: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
 };

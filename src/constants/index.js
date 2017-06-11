@@ -43,7 +43,7 @@ const initialState = {
         difficulty: 'easy',
         time: 5,
         challengeNumber: null,
-        range: generateLevels(3, 31),
+        range: generateLevels(3, 46),
         difficulties: [
             { key: 'easy', value: 'easy', text: 'easy' },
             { key: 'medium', value: 'medium', text: 'medium' },

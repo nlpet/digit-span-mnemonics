@@ -107,6 +107,6 @@ const Cards = () => {
 
         </Card.Group>
     );
-}
+};
 
 export default Cards;

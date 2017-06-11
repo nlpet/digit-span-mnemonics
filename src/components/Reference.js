@@ -169,7 +169,7 @@ const Reference = () => {
             for learning the The Mnemonic Major System (requires registration).
         </p>
         </div>
-    )
+    );
 };
 
 export default Reference;

@@ -169,12 +169,17 @@ function getHint (answer) {
 }
 
 function setDifficulty (difficulty, numberOfDigits) {
-    console.log('setDifficulty', difficulty, numberOfDigits);
-    if (difficulty === 'easy') return Math.ceil(numberOfDigits * 1.20);
-    if (difficulty === 'medium') return Math.ceil(numberOfDigits * 1);
-    if (difficulty === 'hard') return Math.ceil(numberOfDigits * 0.80);
+    let multipliers = { easy: 0.8, medium: 0.6, hard: 0.4, impossible: 0.2 };
 
-    return Math.ceil(numberOfDigits * 0.60);
+    if (numberOfDigits > 9) {
+        multipliers = { easy: 1.20, medium: 1, hard: 0.8, impossible: 0.6 };
+    }
+
+    if (difficulty === 'easy') return Math.ceil(numberOfDigits * multipliers.easy);
+    if (difficulty === 'medium') return Math.ceil(numberOfDigits * multipliers.medium);
+    if (difficulty === 'hard') return Math.ceil(numberOfDigits * multipliers.hard);
+
+    return Math.ceil(numberOfDigits * multipliers.impossible);
 }
 
 function getEmoji (p) {

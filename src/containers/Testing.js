@@ -32,7 +32,6 @@ const Testing = ({ testing, actions }) => {
         const answer = answerElement.value;
         const number = challengeNumber.replace(/[\s]/g, '');
 
-        console.log('checkAnswer', answer, challengeNumber);
         answerElement.value = '';
         return actions.markTestAnswer({ correct: answer === number });
     };
@@ -68,8 +67,6 @@ const Testing = ({ testing, actions }) => {
             </div>
         );
     }
-
-    console.log('Testing', testing);
 
     return (
         <div>

@@ -12,14 +12,13 @@ import * as actions from '../actions';
 import { getEmoji } from '../utils';
 
 
-const Practice = ({ games, learn, actions }) => {
+const Practice = ({ learn, actions }) => {
     const {
-        numQuestion, questionsInSession, currentQuestion,
-        correctAnswers, wrongAnswers, inProgress, ended
+        currentQuestion, correctAnswers, wrongAnswers, inProgress, ended
     } = learn;
     const practiceGame = [];
 
-    if (inProgress && numQuestion < questionsInSession) {
+    if (inProgress) {
         const checkAnswer = () => {
             let correct;
             const answerElement = document.getElementById("practiceAnswer");
@@ -99,7 +98,6 @@ const Practice = ({ games, learn, actions }) => {
 };
 
 Practice.propTypes = {
-    games: PropTypes.object.isRequired,
     learn: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
 };

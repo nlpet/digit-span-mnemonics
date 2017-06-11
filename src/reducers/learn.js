@@ -16,7 +16,7 @@ const learn = (state = {}, action) => {
             return merge(state, {
                 inProgress: true,
                 ended: false,
-                numQuestion: 0,
+                numQuestion: 1,
                 correctAnswers: 0,
                 wrongAnswers: 0,
                 lastAnswer: {},
@@ -29,6 +29,15 @@ const learn = (state = {}, action) => {
 
             return state;
         case MARK_PRACTICE_ANSWER:
+            if (state.numQuestion === state.questionsInSession) {
+                return merge(state, {
+                    inProgress: false,
+                    ended: true,
+                    correctAnswers: state.correctAnswers + action.payload.correct,
+                    wrongAnswers: state.wrongAnswers + (1 ^ action.payload.correct)
+                });
+            }
+
             return merge(state, {
                 numQuestion: state.numQuestion + 1,
                 correctAnswers: state.correctAnswers + action.payload.correct,

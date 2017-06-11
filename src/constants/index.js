@@ -10,7 +10,7 @@ const initialState = {
 
     learn: {
         inProgress: false,
-        numQuestion: 0,
+        numQuestion: 1,
         questionsInSession: 10,
         correctAnswers: 0,
         wrongAnswers: 0,

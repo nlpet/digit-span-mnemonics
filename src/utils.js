@@ -155,6 +155,9 @@ function verifyAnswer (answer, challengeNumber) {
         if (matches !== uniqueNums[num]) flag = false;
     });
 
+    // TODO: add check for letters that are in the answer that are
+    // not associated with any of the digits in the challenge number
+
     return flag;
 }
 

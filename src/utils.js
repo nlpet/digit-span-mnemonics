@@ -170,11 +170,11 @@ function getHint (answer) {
 
 function setDifficulty (difficulty, numberOfDigits) {
     console.log('setDifficulty', difficulty, numberOfDigits);
-    if (difficulty === 'easy') return numberOfDigits;
-    if (difficulty === 'medium') return Math.ceil(numberOfDigits * 0.70);
-    if (difficulty === 'hard') return Math.ceil(numberOfDigits * 0.40);
+    if (difficulty === 'easy') return Math.ceil(numberOfDigits * 1.20);
+    if (difficulty === 'medium') return Math.ceil(numberOfDigits * 1);
+    if (difficulty === 'hard') return Math.ceil(numberOfDigits * 0.80);
 
-    return Math.ceil(numberOfDigits * 0.10);
+    return Math.ceil(numberOfDigits * 0.60);
 }
 
 function getEmoji (p) {

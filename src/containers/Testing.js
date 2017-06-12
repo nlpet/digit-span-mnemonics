@@ -87,14 +87,14 @@ const Testing = ({ testing, actions }) => {
                         End game
                     </Button>
                     <Dropdown style={{ marginRight: "10px", marginLeft: "5px" }}
-                             selection disabled={inProgress}
+                              selection disabled={inProgress}
                               placeholder="difficulty"
                               options={difficulties}
                               onChange={changeDifficulty} />
                     <Dropdown selection disabled={inProgress}
-                            placeholder="number of digits"
-                            options={range}
-                            onChange={setNumberOfDigits} />
+                              placeholder="number of digits"
+                              options={range}
+                              onChange={setNumberOfDigits} />
                     {testGame}
                 </Segment>
                 { (inProgress && time >= 0) ?

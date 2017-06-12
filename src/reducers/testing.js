@@ -30,20 +30,25 @@ const testing = (state = {}, action) => {
                 time: setDifficulty(state.difficulty, state.numberOfDigits),
                 challengeNumber: generateChallengeNumber(state.numberOfDigits),
                 correctAnswers: 0,
-                wrongAnswers: 0
+                wrongAnswers: 0,
+                roundNum: 1
             });
         case END_TEST:
-            if (state.intervalId) clearInterval(state.intervalId);
+            if (state.inProgress) {
+                if (state.intervalId) clearInterval(state.intervalId);
 
-            return merge(state, {
-                inProgress: false,
-                intervalId: null,
-                time: 0,
-                ended: true
-            });
+                return merge(state, {
+                    inProgress: false,
+                    intervalId: null,
+                    time: 0,
+                    ended: true
+                });
+            }
+
+            return state;
         case TEST_TIMER_TICK:
             if (state.time === 0) {
-                if (state.rounds === 0) {
+                if (state.roundNum === state.rounds) {
                     clearInterval(state.intervalId);
 
                     return merge(state, {
@@ -58,13 +63,15 @@ const testing = (state = {}, action) => {
 
             return merge(state, { time: state.time - 1 });
         case MARK_TEST_ANSWER:
-            if (state.rounds === 0) {
+            if (state.roundNum === state.rounds) {
                 clearInterval(state.intervalId);
 
                 return merge(state, {
                     ended: true,
                     inProgress: false,
-                    intervalId: null
+                    intervalId: null,
+                    correctAnswers: state.correctAnswers + action.payload.correct,
+                    wrongAnswers: state.wrongAnswers + (1 ^ action.payload.correct)
                 });
             }
 
@@ -73,7 +80,7 @@ const testing = (state = {}, action) => {
                 wrongAnswers: state.wrongAnswers + (1 ^ action.payload.correct),
                 time: setDifficulty(state.difficulty, state.numberOfDigits),
                 challengeNumber: generateChallengeNumber(state.numberOfDigits),
-                rounds: state.rounds - 1
+                roundNum: state.roundNum + 1
             });
         default:
             return state;

@@ -36,6 +36,7 @@ const initialState = {
     },
 
     testing: {
+        roundNum: 0,
         rounds: 10,
         intervalId: null,
         inProgress: false,

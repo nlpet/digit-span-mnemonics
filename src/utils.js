@@ -1,4 +1,4 @@
-import { keys, map, range, sum, head, countBy, prop } from 'ramda';
+import { keys, map, range, head, countBy, prop } from 'ramda';
 import { fromJS } from 'immutable';
 
 
@@ -119,27 +119,35 @@ function generateLevels (s, e) {
 function findMatches (letter, string) {
     const reg = new RegExp(letter, 'g');
     const match = string.match(reg);
-    return match ? match.length : 0;
+
+    if (match) {
+        return [string.replace(reg, ''), match.length];
+    }
+
+    return [string, 0];
 }
 
 
 function verifyAnswer (answer, challengeNumber) {
     let flag = true;
-    const answr = answer.replace(/[hywaeiou]/g, '');
+    let answr = answer.replace(/[hywaeiou]/g, '');
     const challengeNum = challengeNumber.replace(/[\s]/g, '');
     const uniqueNums = countBy(x => x)(challengeNum);
 
     challengeNumber.split(' ').forEach(num => {
+        let totalMatches = 0;
+        let matches = 0;
         const letters = numToLetter.get(num);
-        const matches = sum(letters.map(l => findMatches(l, answr)));
 
-        if (matches !== uniqueNums[num]) flag = false;
+        letters.forEach(l => {
+            [answr, matches] = findMatches(l, answr);
+            totalMatches += matches;
+        });
+
+        if (totalMatches !== uniqueNums[num]) flag = false;
     });
 
-    // TODO: add check for letters that are in the answer that are
-    // not associated with any of the digits in the challenge number
-
-    return flag;
+    return answr.length === 0 || flag;
 }
 
 function getHint (answer) {

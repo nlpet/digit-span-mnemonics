@@ -103,7 +103,11 @@ const Testing = ({ testing, actions }) => {
                 { (inProgress && time >= 0) ?
                     <Segment>
                         <div>
-                            <h2>Time: {time}</h2>
+                            <h2>
+                                <i className="fa fa-clock-o" aria-hidden="true" />
+                                &nbsp;&nbsp;
+                                {time}
+                            </h2>
                             <p>
                                 <b>Correct: {correctAnswers}</b><br />
                                 <b>Wrong: {wrongAnswers}</b>

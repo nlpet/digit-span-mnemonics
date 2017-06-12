@@ -127,7 +127,10 @@ const Challenge = ({ challenge, actions }) => {
                     </Button>
                     { inProgress ?
                         <Button color="yellow" onClick={actions.toggleTimer}>
-                            {paused ? "Resume" : "Pause"}
+                            { paused ?
+                                <i className="fa fa-play" aria-hidden="true" /> :
+                                <i className="fa fa-pause" aria-hidden="true" />
+                            }
                         </Button> : null
                     }
                     <Dropdown selection disabled={inProgress}
@@ -141,9 +144,17 @@ const Challenge = ({ challenge, actions }) => {
                         <div>
                             <h2 style={{ marginBottom: "22px" }}>
                                 {paused ? numPlaceholder : challengeNumber}
+                                <i style={{ float: "right" }}
+                                   className="fa fa-refresh"
+                                   aria-hidden="true"
+                                   onClick={actions.generateNumber} />
                             </h2>
                             <Divider />
-                            <h2>Time: {time}</h2>
+                            <h2>
+                                <i className="fa fa-clock-o" aria-hidden="true" />
+                                &nbsp;&nbsp;
+                                {time}
+                            </h2>
                             <p>
                                 <b>Accepted: {correctAnswers}</b><br />
                                 <b>Rejected: {wrongAnswers}</b>

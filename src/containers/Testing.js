@@ -48,11 +48,14 @@ const Testing = ({ testing, actions }) => {
                 <h1 style={{ marginTop: "20px", marginBottom: "20px" }}>
                     {number}
                 </h1>
-                <Input style={{ marginRight: "10px" }}
+                <Input disabled={time > 0}
+                       style={{ marginRight: "10px" }}
                        placeholder="Answer..."
                        onKeyPress={handleKeyPress}
                        id="testAnswer" />
-                <Button color="green" onClick={checkAnswer}>Submit</Button>
+                <Button disabled={time > 0} color="green" onClick={checkAnswer}>
+                    Submit
+                </Button>
             </div>
         );
     } else if (ended) {

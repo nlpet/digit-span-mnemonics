@@ -1,22 +1,6 @@
-import { keys, map, range, sum, head, countBy } from 'ramda';
+import { keys, map, range, sum, head, countBy, prop } from 'ramda';
 import { fromJS } from 'immutable';
 
-const numToLettersAndSounds = {
-    0: ['s', 'soft c', 'z', 'x'],
-    1: ['t', 'd', 'th'],
-    2: ['n'],
-    3: ['m'],
-    4: ['r', 'l'],
-    5: ['l'],
-    6: [
-        'ch', 'j', 'soft g', 'sh',
-        'c', 'cz', 's', 'sc', 'sch',
-        't', 'tsch', 'z'
-    ],
-    7: ['k', 'hard c', 'q', 'ch', 'hard g'],
-    8: ['f', 'ph', 'v', 'gh'],
-    9: ['p', 'b', 'gh']
-};
 
 const numToLetter = fromJS({
     0: ['s', 'c', 'z', 'x'],
@@ -35,57 +19,53 @@ const numToLetter = fromJS({
     9: ['p', 'b', 'gh']
 });
 
-const letterToNum = fromJS({
-    s: 0, c: 0, z: 0, x: 0,
-    t: 1, d: 1, th: 1,
-    n: 2,
-    m: 3,
-    r: 4,
-    l: 5,
-    ch: 6, j: 6, g: 6, sh: 6,
-    cz: 6, sc: 6, sch: 6, tsch: 6,
-    k: 7, q: 7,
-    f: 8, ph: 8, v: 8, gh: 8,
-    p: 9, b: 9
-});
-
 const lettersAndSoundsToNums = {
-    's': '0',
-    'soft c': '0',
-    'z': '0',
-    'x (in xylophone)': '0',
-    't': '1',
-    'd': '1',
-    'th (in thing and this)': 1,
-    'n': '2',
-    'm': '3',
-    'r': '4',
-    'l (in colonel)': '4',
-    'l': '5',
-    'ch (in cheese and chef)': '6',
-    'j': '6',
-    'soft g': '6',
-    'sh': '6',
-    'c (in cello and special)': '6',
-    'cz (in Czech)': '6',
-    's (in tissue and vision)': '6',
-    'sc (in fascist)': '6',
-    'sch (in schwa and eschew)': '6',
-    't (in ration and equation)': '6',
-    'tsch (in putsch)': '6',
-    'z (in seizure)': '6',
-    'k': '7',
-    'hard c': '7',
-    'q': '7',
-    'ch (in loch)': '7',
-    'hard g': '7',
-    'f': '8',
-    'ph (in phone)': '8',
-    'v': '8',
-    'gh (in laugh)': '8',
-    'p': '9',
-    'b': '9',
-    'gh (in hiccough)': '9'
+    's': { num: '0', example: 'assess' },
+    'soft c': { num: '0', example: 'acid & citrus' },
+    'z': { num: '0', example: 'size' },
+    'x': { num: '0', example: 'xylophone' },
+    't': { num: '1', example: 'hat' },
+    'd': { num: '1', example: 'dot' },
+    'th': { num: '1', example: 'thing and this' },
+    'n': { num: '2', example: 'hen' },
+    'm': { num: '3', example: 'home' },
+    'r': { num: '4', example: 'row and l in colonel' },
+    'l': { num: '5', example: 'heal' },
+    'ch': { num: '6', example: 'cheese and chef' },
+    'j': { num: '6', example: 'jargon, also z in seizure' },
+    'soft g': { num: '6', example: 'rage' },
+    'sh': { num: '6', example: 'shame, also s in tissue & vision and t in ration & equation' },
+    'c': { num: '6', example: 'cello and special' },
+    'cz': { num: '6', example: 'Czech' },
+    'sc': { num: '6', example: 'fascist' },
+    'sch': { num: '6', example: 'schwa and eschew' },
+    'tsch': { num: '6', example: 'putsch' },
+    'k': { num: '7', example: 'sky, also ch in loch' },
+    'hard c': { num: '7', example: 'car' },
+    'q': { num: '7', example: 'square' },
+    'hard g': { num: '7', example: 'game' },
+    'f': { num: '8', example: 'fan' },
+    'ph': { num: '8', example: 'phone' },
+    'v': { num: '8', example: 'van' },
+    'gh': { num: '8', example: 'laugh' },
+    'p': { num: '9', example: 'pan' },
+    'b': { num: '9', example: 'ban' }
+};
+
+const numToLettersAndSounds = {
+    0: ['s', 'soft c', 'z', 'x'],
+    1: ['t', 'd', 'th'],
+    2: ['n'],
+    3: ['m'],
+    4: ['r'],
+    5: ['l'],
+    6: [
+        'ch', 'j', 'soft g', 'sh', 'c',
+        'cz', 's', 'sc', 'sch', 'tsch'
+    ],
+    7: ['k', 'hard c', 'q', 'hard g'],
+    8: ['f', 'ph', 'v', 'gh'],
+    9: ['p', 'b']
 };
 
 const answersAndHints = fromJS({
@@ -124,10 +104,11 @@ function generateStep () {
     const letters = keys(lettersAndSoundsToNums);
     const randomInteger = getRandomInteger(letters.length);
     const letter = letters[randomInteger];
+    const example = lettersAndSoundsToNums[letter].example;
 
     return {
-        text: `What number is associated with ${letter}?`,
-        answer: lettersAndSoundsToNums[letter]
+        text: `What number is associated with ${letter} (in ${example})?`,
+        answer: lettersAndSoundsToNums[letter].num
     };
 }
 
@@ -167,8 +148,8 @@ function getHint (answer) {
     }
 
     const first = head(answer);
-    const num = letterToNum.get(first).toString();
-    return answersAndHints.get(num, `No hint available for ${num} :o`);
+    const numObj = prop(first, lettersAndSoundsToNums);
+    return answersAndHints.get(numObj.num, `No hint available for ${numObj.num} :o`);
 }
 
 function setDifficulty (difficulty, numberOfDigits) {

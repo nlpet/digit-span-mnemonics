@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { toLower, slice } from 'ramda';
+import { toLower, slice, repeat } from 'ramda';
 import {
     Segment, Button, Input,
     List, Divider, Grid,
@@ -18,9 +18,11 @@ const Challenge = ({ challenge, actions }) => {
     const answersList = [];
     const {
         inProgress, time, correctAnswers, ended, uniqueAnswers,
-        wrongAnswers, answers, paused, challengeNumber, levels
+        wrongAnswers, answers, paused, challengeNumber,
+        levels, difficulty
     } = challenge;
     const len = answers.length > 15 ? Math.ceil(answers.length / 3) : 5;
+    const numPlaceholder = repeat('˟', difficulty).join(' ');
 
     const timer = () => actions.challengeTimerTick();
 
@@ -138,7 +140,7 @@ const Challenge = ({ challenge, actions }) => {
                     <Segment>
                         <div>
                             <h2 style={{ marginBottom: "22px" }}>
-                                {challengeNumber}
+                                {paused ? numPlaceholder : challengeNumber}
                             </h2>
                             <Divider />
                             <h2>Time: {time}</h2>

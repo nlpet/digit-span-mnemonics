@@ -4,7 +4,8 @@ import { generateChallengeNumber, setDifficulty } from '../utils';
 
 import {
     CHANGE_TEST_DIFFICULTY, START_TEST, END_TEST,
-    TEST_TIMER_TICK, MARK_TEST_ANSWER, SET_NUMBER_OF_DIGITS
+    TEST_TIMER_TICK, MARK_TEST_ANSWER,
+    SET_NUMBER_OF_DIGITS, SET_TIMER_TO_ZERO
 } from '../constants/actionTypes';
 
 
@@ -82,6 +83,8 @@ const testing = (state = {}, action) => {
                 challengeNumber: generateChallengeNumber(state.numberOfDigits),
                 roundNum: state.roundNum + 1
             });
+        case SET_TIMER_TO_ZERO:
+            return merge(state, { time: 0 });
         default:
             return state;
     }

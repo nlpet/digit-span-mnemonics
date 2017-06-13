@@ -56,6 +56,9 @@ const Testing = ({ testing, actions }) => {
                 <Button disabled={time > 0} color="green" onClick={checkAnswer}>
                     Submit
                 </Button>
+                <Button color="instagram" onClick={actions.setTimerToZero}>
+                    I'm ready!
+                </Button>
             </div>
         );
     } else if (ended) {

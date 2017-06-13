@@ -85,10 +85,7 @@ const Testing = ({ testing, actions }) => {
                             onClick={() => actions.startTest({ timer: actions.testTimerTick })}>
                         New game
                     </Button>
-                    <Button color="red"
-                            onClick={actions.endTest}>
-                        End game
-                    </Button>
+                    <Button color="red" onClick={actions.endTest}>End game</Button>
                     <Dropdown style={{ marginRight: "10px", marginLeft: "5px" }}
                               selection disabled={inProgress}
                               placeholder="difficulty"

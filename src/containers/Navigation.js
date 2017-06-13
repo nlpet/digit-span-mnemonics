@@ -11,9 +11,9 @@ const Navigation = ({ navigation, actions }) => {
     const tabs = [];
     const tabsClass = `ui three item stackable tabs menu`;
     const tabNames = {
-        learn: 'Learn',
-        challenge: 'Challenge',
-        test: 'Test'
+        learn: <h3>Learn &nbsp;<i className="fa fa-book" aria-hidden="true" /></h3>,
+        challenge: <h3>Challenge &nbsp;<i className="fa fa-gamepad" aria-hidden="true" /></h3>,
+        test: <h3>Test &nbsp;<i className="fa fa-check" aria-hidden="true" /></h3>
     };
 
     Object.keys(tabNames).forEach((tabName, i) => {

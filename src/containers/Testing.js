@@ -10,35 +10,32 @@ import * as actions from '../actions';
 import { getEmoji } from '../utils';
 
 
+const helpers = {
+    handleKeyPress: (e, checkAnswer, state, actions) => {
+        if (e.key === 'Enter') checkAnswer(state, actions);
+    },
+    changeDifficulty: (e, data, actions) => {
+        return actions.changeChallengeDifficulty({ level: data.value });
+    },
+    setNumberOfDigits: (e, data, actions) => {
+        return actions.setNumberOfDigits({ numberOfDigits: data.value });
+    },
+    checkAnswer: (state, actions) => {
+        const answerElement = document.getElementById("testAnswer");
+        const answer = answerElement.value;
+        const number = state.challengeNumber.replace(/[\s]/g, '');
+
+        answerElement.value = '';
+        return actions.markTestAnswer({ correct: answer === number });
+    }
+};
+
 const Testing = ({ testing, actions }) => {
     let testGame;
     const {
         inProgress, range, challengeNumber, ended, time,
         correctAnswers, wrongAnswers, difficulties
     } = testing;
-
-    const timer = () => actions.testTimerTick();
-
-    const changeDifficulty = (e, data) => {
-        return actions.changeTestDifficulty({ difficulty: data.value });
-    };
-
-    const setNumberOfDigits = (e, data) => {
-        return actions.setNumberOfDigits({ numberOfDigits: data.value });
-    };
-
-    const checkAnswer = () => {
-        const answerElement = document.getElementById("testAnswer");
-        const answer = answerElement.value;
-        const number = challengeNumber.replace(/[\s]/g, '');
-
-        answerElement.value = '';
-        return actions.markTestAnswer({ correct: answer === number });
-    };
-
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter') checkAnswer();
-    };
 
     if (inProgress && !ended) {
         const number = time > 0 ? challengeNumber : ' ';
@@ -51,9 +48,9 @@ const Testing = ({ testing, actions }) => {
                 <Input disabled={time > 0}
                        style={{ marginRight: "10px" }}
                        placeholder="Answer..."
-                       onKeyPress={handleKeyPress}
+                       onKeyPress={e => helpers.handleKeyPress(e, helpers.checkAnswer, testing, actions)}
                        id="testAnswer" />
-                <Button disabled={time > 0} color="green" onClick={checkAnswer}>
+                <Button disabled={time > 0} color="green" onClick={() => helpers.checkAnswer(testing, actions)}>
                     Submit
                 </Button>
                 <Button color="instagram" onClick={actions.setTimerToZero}>
@@ -85,7 +82,7 @@ const Testing = ({ testing, actions }) => {
             <Segment.Group horizontal key="challenge">
                 <Segment>
                     <Button color="purple"
-                            onClick={() => actions.startTest({ timer })}>
+                            onClick={() => actions.startTest({ timer: actions.testTimerTick })}>
                         New game
                     </Button>
                     <Button color="red"
@@ -96,11 +93,11 @@ const Testing = ({ testing, actions }) => {
                               selection disabled={inProgress}
                               placeholder="difficulty"
                               options={difficulties}
-                              onChange={changeDifficulty} />
+                              onChange={(e, data) => helpers.changeDifficulty(e, data, actions)} />
                     <Dropdown selection disabled={inProgress}
                               placeholder="number of digits"
                               options={range}
-                              onChange={setNumberOfDigits} />
+                              onChange={(e, data) => helpers.setNumberOfDigits(e, data, actions)} />
                     {testGame}
                 </Segment>
                 { (inProgress && time >= 0) ?

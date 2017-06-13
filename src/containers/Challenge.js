@@ -35,7 +35,7 @@ const helpers = {
     refreshNumber: (state, actions) => {
         if (!state.paused) actions.generateNumber();
     }
-}
+};
 
 const Challenge = ({ challenge, actions }) => {
     let challengeGame;

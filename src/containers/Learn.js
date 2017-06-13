@@ -9,20 +9,17 @@ import Practice from '../containers/Practice';
 import Reference from '../components/Reference';
 import Cards from '../components/Cards';
 
-
 const Learn = ({ games }) => {
     const panels = [
         {
             title: 'Reference',
-            content: <Reference />
-        },
-        {
+            content: <Reference/>
+        }, {
             title: 'Cards',
-            content: <Cards />
-        },
-        {
+            content: <Cards/>
+        }, {
             title: 'Practice',
-            content: <Practice />
+            content: <Practice/>
         }
     ];
 
@@ -31,13 +28,13 @@ const Learn = ({ games }) => {
             <Header as="h2">
                 Learning Mode
                 <Header.Subheader>
-                    Familiarise yourself with the Mnemonic Major System by reading the wikipedia
-                    article, having a look at the study cards and practicing.
+                    Familiarise yourself with the Mnemonic Major System by reading the
+                    wikipedia article, having a look at the study cards and practicing.
                 </Header.Subheader>
             </Header>
-            <Accordion style={{ width: "100%" }}
-                       panels={panels}
-                       defaultActiveIndex={-1} styled />
+            <Accordion style={{
+                width: "100%"
+            }} panels={panels} defaultActiveIndex={-1} styled/>
         </div>
     );
 };

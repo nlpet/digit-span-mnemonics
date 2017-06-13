@@ -153,7 +153,8 @@ function verifyAnswer (answer, challengeNumber) {
         let totalMatches;
         const letters = numToLetter.get(num);
 
-        [answer, totalMatches] = getTotalMatches(letters, answer)
+        [answer, totalMatches] = getTotalMatches(letters, answer);
+
         if (totalMatches !== uniqueNums[num]) flag = false;
     }
 

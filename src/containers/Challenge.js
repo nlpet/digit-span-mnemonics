@@ -13,44 +13,40 @@ import * as actions from '../actions';
 import { verifyAnswer, getEmoji, getTimeIcon } from '../utils';
 
 
+const helpers = {
+    handleKeyPress: (e, checkAnswer, state, actions) => {
+        if (e.key === 'Enter') checkAnswer(state, actions);
+    },
+    checkAnswer: (state, actions) => {
+        const answer = toLower(document.getElementById("challengeAnswer").value);
+
+        if (state.uniqueAnswers.has(answer)) return false;
+        if (answer.length && !state.paused) {
+            return actions.markChallengeAnswer({
+                answer,
+                correct: verifyAnswer(answer, state.challengeNumber)
+            });
+        }
+        return false;
+    },
+    changeDifficulty: (e, data, actions) => {
+        return actions.changeChallengeDifficulty({ level: data.value });
+    },
+    refreshNumber: (state, actions) => {
+        if (!state.paused) actions.generateNumber();
+    }
+}
+
 const Challenge = ({ challenge, actions }) => {
     let challengeGame;
     const answersList = [];
     const {
-        inProgress, time, correctAnswers, ended, uniqueAnswers,
+        inProgress, time, correctAnswers, ended,
         wrongAnswers, answers, paused, challengeNumber,
         levels, difficulty
     } = challenge;
     const len = answers.length > 15 ? Math.ceil(answers.length / 3) : 5;
     const numPlaceholder = repeat('˟', difficulty).join(' ');
-
-    const timer = () => actions.challengeTimerTick();
-
-    const checkAnswer = () => {
-        const answerElement = document.getElementById("challengeAnswer");
-        const answer = toLower(answerElement.value);
-
-        if (uniqueAnswers.has(answer)) return false;
-
-        if (answer.length && !paused) {
-            return actions.markChallengeAnswer({
-                correct: verifyAnswer(answer, challengeNumber), answer
-            });
-        }
-        return false;
-    };
-
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter') checkAnswer();
-    };
-
-    const changeDifficulty = (e, data) => {
-        return actions.changeChallengeDifficulty({ level: data.value });
-    };
-
-    const refreshNumber = () => {
-        if (!paused) actions.generateNumber();
-    }
 
     answers.forEach((item, i) => {
         const style = {
@@ -87,12 +83,12 @@ const Challenge = ({ challenge, actions }) => {
                 <Input disabled={paused}
                        style={{ marginRight: "10px" }}
                        placeholder="Answer..."
-                       onKeyPress={handleKeyPress}
+                       onKeyPress={e => helpers.handleKeyPress(e, helpers.checkAnswer, challenge, actions)}
                        id="challengeAnswer" />
 
                 <Button disabled={paused}
                         color="green"
-                        onClick={checkAnswer}>
+                        onClick={() => helpers.checkAnswer(challenge, actions)}>
                     Submit
                 </Button>
             </div>
@@ -124,7 +120,7 @@ const Challenge = ({ challenge, actions }) => {
             <Segment.Group horizontal key="challenge">
                 <Segment>
                     <Button color="purple"
-                            onClick={() => actions.startChallenge({ timer })}>
+                            onClick={() => actions.startChallenge({ timer: actions.challengeTimerTick() })}>
                         New game
                     </Button>
                     <Button color="red" onClick={actions.endChallenge}>
@@ -141,7 +137,7 @@ const Challenge = ({ challenge, actions }) => {
                     <Dropdown selection disabled={inProgress}
                               placeholder="difficulty"
                               options={levels}
-                              onChange={changeDifficulty} />
+                              onChange={(e, data) => helpers.changeDifficulty(e, data, actions)} />
                     {challengeGame}
                 </Segment>
                 { (inProgress && time >= 0) ?
@@ -152,7 +148,7 @@ const Challenge = ({ challenge, actions }) => {
                                 <i style={{ float: "right" }}
                                    className="fa fa-refresh"
                                    aria-hidden="true"
-                                   onClick={refreshNumber} />
+                                   onClick={() => helpers.refreshNumber(challenge, actions)} />
                             </h2>
                             <Divider />
                             <h2>

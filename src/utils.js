@@ -199,6 +199,14 @@ function getEmoji (p) {
     return face;
 }
 
+function getTimeIcon (time) {
+    if (time > 40) return 'fa fa-hourglass-start';
+    else if (time > 20) return 'fa fa-hourglass-half';
+    else if (time > 10) return 'fa fa-hourglass-end';
+
+    return 'fa fa-hourglass-o';
+};
+
 export {
     generateStep,
     generateChallengeNumber,
@@ -206,5 +214,6 @@ export {
     verifyAnswer,
     getHint,
     setDifficulty,
-    getEmoji
+    getEmoji,
+    getTimeIcon
 };

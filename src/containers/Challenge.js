@@ -10,7 +10,7 @@ import {
 } from 'semantic-ui-react';
 
 import * as actions from '../actions';
-import { verifyAnswer, getEmoji } from '../utils';
+import { verifyAnswer, getEmoji, getTimeIcon } from '../utils';
 
 
 const Challenge = ({ challenge, actions }) => {
@@ -23,13 +23,6 @@ const Challenge = ({ challenge, actions }) => {
     } = challenge;
     const len = answers.length > 15 ? Math.ceil(answers.length / 3) : 5;
     const numPlaceholder = repeat('˟', difficulty).join(' ');
-    const getTimeIcon = () => {
-        if (time > 40) return 'fa fa-hourglass-start';
-        else if (time > 20) return 'fa fa-hourglass-half';
-        else if (time > 10) return 'fa fa-hourglass-end';
-
-        return 'fa fa-hourglass-o';
-    }
 
     const timer = () => actions.challengeTimerTick();
 
@@ -163,7 +156,7 @@ const Challenge = ({ challenge, actions }) => {
                             </h2>
                             <Divider />
                             <h2>
-                                <i className={getTimeIcon()} aria-hidden="true" />
+                                <i className={getTimeIcon(time)} aria-hidden="true" />
                                 &nbsp;&nbsp;
                                 {time}
                             </h2>

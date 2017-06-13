@@ -141,13 +141,20 @@ function getTotalMatches (letters, answer) {
     return [answer, totalMatches];
 }
 
+function removeHs (answer) {
+    const reg = new RegExp('(?:[^tscgp])h', 'g');
+
+    return answer.replace(reg, '');
+}
 
 // TODO: refactor this
 function verifyAnswer (answer, challengeNumber) {
     let flag = true;
-    answer = answer.replace(/[hywaeiou]/g, '');
     const challengeNum = challengeNumber.replace(/[\s]/g, '');
     const uniqueNums = countBy(x => x)(challengeNum);
+
+    answer = answer.replace(/[ywaeiou]/g, '');
+    answer = removeHs(answer);
 
     for (let num in uniqueNums) {
         let totalMatches;
@@ -199,6 +206,14 @@ function getEmoji (p) {
     return face;
 }
 
+function getTimeIcon (time) {
+    if (time > 40) return 'fa fa-hourglass-start';
+    else if (time > 20) return 'fa fa-hourglass-half';
+    else if (time > 10) return 'fa fa-hourglass-end';
+
+    return 'fa fa-hourglass-o';
+};
+
 export {
     generateStep,
     generateChallengeNumber,
@@ -206,5 +221,6 @@ export {
     verifyAnswer,
     getHint,
     setDifficulty,
-    getEmoji
+    getEmoji,
+    getTimeIcon
 };

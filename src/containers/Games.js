@@ -9,7 +9,7 @@ import Challenge from './Challenge';
 import Testing from './Testing';
 
 
-const Games = ({ navigation, games }) => {
+const Games = ({ navigation }) => {
     const gamesObj = {
         learn: <Learn />,
         challenge: <Challenge />,
@@ -21,8 +21,7 @@ const Games = ({ navigation, games }) => {
 
 
 Games.propTypes = {
-    navigation: PropTypes.object.isRequired,
-    games: PropTypes.object.isRequired
+    navigation: PropTypes.object.isRequired
 };
 
 

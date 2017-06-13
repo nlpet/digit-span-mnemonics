@@ -1,4 +1,6 @@
-import { keys, map, range, head, countBy, prop } from 'ramda';
+import {
+    keys, map, range, head, countBy, prop
+} from 'ramda';
 import { fromJS } from 'immutable';
 
 
@@ -127,27 +129,35 @@ function findMatches (letter, string) {
     return [string, 0];
 }
 
+function getTotalMatches (letters, answer) {
+    let totalMatches = 0;
+    let matches;
 
+    letters.forEach(l => {
+        [answer, matches] = findMatches(l, answer);
+        totalMatches += matches;
+    });
+
+    return [answer, totalMatches];
+}
+
+
+// TODO: refactor this
 function verifyAnswer (answer, challengeNumber) {
     let flag = true;
-    let answr = answer.replace(/[hywaeiou]/g, '');
+    answer = answer.replace(/[hywaeiou]/g, '');
     const challengeNum = challengeNumber.replace(/[\s]/g, '');
     const uniqueNums = countBy(x => x)(challengeNum);
 
-    challengeNumber.split(' ').forEach(num => {
-        let totalMatches = 0;
-        let matches = 0;
+    for (let num in uniqueNums) {
+        let totalMatches;
         const letters = numToLetter.get(num);
 
-        letters.forEach(l => {
-            [answr, matches] = findMatches(l, answr);
-            totalMatches += matches;
-        });
-
+        [answer, totalMatches] = getTotalMatches(letters, answer)
         if (totalMatches !== uniqueNums[num]) flag = false;
-    });
+    }
 
-    return answr.length === 0 || flag;
+    return answer.length === 0 && flag;
 }
 
 function getHint (answer) {

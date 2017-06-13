@@ -55,6 +55,10 @@ const Challenge = ({ challenge, actions }) => {
         return actions.changeChallengeDifficulty({ level: data.value });
     };
 
+    const refreshNumber = () => {
+        if (!paused) actions.generateNumber();
+    }
+
     answers.forEach((item, i) => {
         const style = {
             textDecoration: item.correct ? "none" : "line-through",
@@ -87,7 +91,8 @@ const Challenge = ({ challenge, actions }) => {
 
                 <br />
 
-                <Input style={{ marginRight: "10px" }}
+                <Input disabled={paused}
+                       style={{ marginRight: "10px" }}
                        placeholder="Answer..."
                        onKeyPress={handleKeyPress}
                        id="challengeAnswer" />
@@ -154,7 +159,7 @@ const Challenge = ({ challenge, actions }) => {
                                 <i style={{ float: "right" }}
                                    className="fa fa-refresh"
                                    aria-hidden="true"
-                                   onClick={actions.generateNumber} />
+                                   onClick={refreshNumber} />
                             </h2>
                             <Divider />
                             <h2>

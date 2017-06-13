@@ -61,12 +61,13 @@ const Testing = ({ testing, actions }) => {
     } else if (ended) {
         const p = Math.ceil((correctAnswers / (correctAnswers + wrongAnswers)) * 100);
         const face = getEmoji(p);
-        const msg = `You got ${correctAnswers} answers right! ${face}`;
+        const msg = `You got ${correctAnswers} answers right `;
+        const accuracy = `with ${ isNaN(p) ? 0 : p }% accuracy ${face}`;
 
         testGame = (
             <div>
                 <Divider />
-                <p>Game over! {msg}</p>
+                <p>Game over! {msg} {accuracy}</p>
             </div>
         );
     }

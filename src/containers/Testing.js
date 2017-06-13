@@ -15,7 +15,7 @@ const helpers = {
         if (e.key === 'Enter') checkAnswer(state, actions);
     },
     changeDifficulty: (e, data, actions) => {
-        return actions.changeChallengeDifficulty({ level: data.value });
+        return actions.changeTestDifficulty({ level: data.value });
     },
     setNumberOfDigits: (e, data, actions) => {
         return actions.setNumberOfDigits({ numberOfDigits: data.value });

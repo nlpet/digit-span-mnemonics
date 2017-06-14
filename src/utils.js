@@ -9,7 +9,7 @@ const numToLetter = fromJS({
     1: ['th', 't', 'd'],
     2: ['n'],
     3: ['m'],
-    4: ['r', 'l'],
+    4: ['r'],
     5: ['l'],
     6: [
         'tsch', 'sch', 'ch', 'j', 'g', 'sh',

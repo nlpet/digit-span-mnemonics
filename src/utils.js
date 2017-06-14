@@ -6,15 +6,14 @@ import { fromJS } from 'immutable';
 
 const numToLetter = fromJS({
     0: ['s', 'c', 'z', 'x'],
-    1: ['t', 'd', 'th'],
+    1: ['th', 't', 'd'],
     2: ['n'],
     3: ['m'],
     4: ['r', 'l'],
     5: ['l'],
     6: [
-        'ch', 'j', 'g', 'sh',
-        'c', 'cz', 's', 'sc', 'sch',
-        't', 'tsch', 'z'
+        'tsch', 'sch', 'ch', 'j', 'g', 'sh',
+        'c', 'cz', 's', 'sc', 't', , 'z'
     ],
     7: ['k', 'c', 'q', 'ch', 'g'],
     8: ['f', 'ph', 'v', 'gh'],
@@ -153,7 +152,7 @@ function verifyAnswer (answer, challengeNumber) {
     const challengeNum = challengeNumber.replace(/[\s]/g, '');
     const uniqueNums = countBy(x => x)(challengeNum);
 
-    answer = answer.replace(/[ywaeiou]/g, '');
+    answer = answer.replace(/[ywaeiou\s]/g, '');
     answer = removeHs(answer);
 
     for (let num in uniqueNums) {

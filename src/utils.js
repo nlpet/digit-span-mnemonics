@@ -59,7 +59,7 @@ const numToLettersAndSounds = {
     1: ['t', 'd', 'th'],
     2: ['n'],
     3: ['m'],
-    4: ['r'],
+    4: ['r', 'l'],
     5: ['l'],
     6: [
         'ch', 'j', 'soft g', 'sh', 'c',

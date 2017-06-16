@@ -119,7 +119,7 @@ const Challenge = ({ challenge, actions }) => {
             </Header>
             <Segment.Group horizontal key="challenge">
                 <Segment>
-                    <Button color="purple"
+                    <Button color="teal"
                             onClick={() => actions.startChallenge({ timer: actions.challengeTimerTick })}>
                         New game
                     </Button>

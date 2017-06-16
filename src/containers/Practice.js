@@ -85,8 +85,8 @@ const Practice = ({ learn, actions }) => {
 
     return (
         <div>
-            <Button color="purple" onClick={actions.startPractice}>New game</Button>
-            <Button color="red" onClick={actions.endPractice}>
+            <Button color="violet" onClick={actions.startPractice}>New game</Button>
+            <Button color="black" onClick={actions.endPractice}>
                 End game
             </Button>
             <Button.Group>

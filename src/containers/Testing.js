@@ -82,11 +82,11 @@ const Testing = ({ testing, actions }) => {
             </Header>
             <Segment.Group horizontal key="challenge">
                 <Segment>
-                    <Button color="purple"
+                    <Button color="teal"
                             onClick={() => actions.startTest({ timer: actions.testTimerTick })}>
                         New game
                     </Button>
-                    <Button color="red" onClick={actions.endTest}>End game</Button>
+                    <Button color="pink" onClick={actions.endTest}>End game</Button>
                     <Dropdown style={{ marginRight: "10px", marginLeft: "5px" }}
                               selection disabled={inProgress}
                               placeholder="difficulty"

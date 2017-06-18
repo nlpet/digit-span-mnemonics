@@ -13,8 +13,8 @@ const testing = (state = {}, action) => {
     switch (action.type) {
         case CHANGE_TEST_DIFFICULTY:
             return merge(state, {
-                difficulty: action.payload.difficulty,
-                time: setDifficulty(action.payload.difficulty, state.numberOfDigits)
+                difficulty: action.payload.level,
+                time: setDifficulty(action.payload.level, state.numberOfDigits)
             });
         case SET_NUMBER_OF_DIGITS:
             return merge(state, {

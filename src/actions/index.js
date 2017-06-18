@@ -50,9 +50,9 @@ export const changeChallengeDifficulty = ({ level }) => ({
     payload: { level }
 });
 
-export const changeTestDifficulty = ({ difficulty }) => ({
+export const changeTestDifficulty = ({ level }) => ({
     type: actionTypes.CHANGE_TEST_DIFFICULTY,
-    payload: { difficulty }
+    payload: { level }
 });
 
 export const setNumberOfDigits = ({ numberOfDigits }) => ({

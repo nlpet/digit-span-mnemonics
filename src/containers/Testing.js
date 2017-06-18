@@ -54,7 +54,7 @@ const Testing = ({ testing, actions }) => {
                     Submit
                 </Button>
                 <Button color="instagram" onClick={actions.setTimerToZero}>
-                    I'm ready!
+                    I am ready!
                 </Button>
             </div>
         );

@@ -183,12 +183,7 @@ function setDifficulty (difficulty, numberOfDigits) {
     if (numberOfDigits > 9) {
         multipliers = { easy: 1.20, medium: 1, hard: 0.8, impossible: 0.6 };
     }
-
-    if (difficulty === 'easy') return Math.ceil(numberOfDigits * multipliers.easy);
-    if (difficulty === 'medium') return Math.ceil(numberOfDigits * multipliers.medium);
-    if (difficulty === 'hard') return Math.ceil(numberOfDigits * multipliers.hard);
-
-    return Math.ceil(numberOfDigits * multipliers.impossible);
+    return Math.ceil(numberOfDigits * multipliers[difficulty]);
 }
 
 function getEmoji (p) {

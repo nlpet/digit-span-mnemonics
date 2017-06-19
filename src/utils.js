@@ -152,8 +152,7 @@ function verifyAnswer (answer, challengeNumber) {
     const challengeNum = challengeNumber.replace(/[\s]/g, '');
     const uniqueNums = countBy(x => x)(challengeNum);
 
-    answer = answer.replace(/[ywaeiou\s]/g, '');
-    answer = removeHs(answer);
+    answer = removeHs(answer.replace(/[ywaeiou\s]/g, ''));
 
     for (let num in uniqueNums) {
         let totalMatches;
@@ -174,6 +173,7 @@ function getHint (answer) {
 
     const first = head(answer);
     const numObj = prop(first, lettersAndSoundsToNums);
+
     return answersAndHints.get(numObj.num, `No hint available for ${numObj.num} :o`);
 }
 

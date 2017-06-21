@@ -181,7 +181,7 @@ function setDifficulty (difficulty, numberOfDigits) {
     let multipliers = { easy: 0.8, medium: 0.6, hard: 0.4, impossible: 0.2 };
 
     if (numberOfDigits > 9) {
-        multipliers = { easy: 1.20, medium: 1, hard: 0.8, impossible: 0.6 };
+        multipliers = map(a => a + 0.4, multipliers);
     }
     return Math.ceil(numberOfDigits * multipliers[difficulty]);
 }

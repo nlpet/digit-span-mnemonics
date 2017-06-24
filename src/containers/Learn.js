@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 import { Accordion, Header } from 'semantic-ui-react';
 
 import * as actions from '../actions';
@@ -9,7 +8,7 @@ import Practice from '../containers/Practice';
 import Reference from '../components/Reference';
 import Cards from '../components/Cards';
 
-const Learn = ({ games }) => {
+const Learn = () => {
     const panels = [
         {
             title: 'Reference',
@@ -37,10 +36,6 @@ const Learn = ({ games }) => {
             }} panels={panels} defaultActiveIndex={-1} styled/>
         </div>
     );
-};
-
-Learn.propTypes = {
-    games: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({

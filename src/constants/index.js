@@ -54,13 +54,6 @@ const initialState = {
         ended: false,
         correctAnswers: 0,
         wrongAnswers: 0
-    },
-
-    games: {
-        modes: ['learn', 'challenge', 'test'],
-        learn: 'Learn placeholder',
-        challenge: 'Challenge placeholder',
-        test: 'Test placeholder'
     }
 };
 

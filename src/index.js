@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import persistState from 'redux-localstorage';
 
-import App from './components/App';
 import reducer from './reducers';
 import { initialState } from './constants';
 

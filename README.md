@@ -15,3 +15,4 @@ If a build already exists and no changes have been introduced since the last bui
 
 To run tests `npm test` or `yarn test` and for test coverage report `npm test-report` or `yarn test-report`. To view the coverage html report, open `cover/index.html` in a browser.
 
+

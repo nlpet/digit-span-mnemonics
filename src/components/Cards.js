@@ -6,17 +6,6 @@ const Cards = () => {
         <Card.Group>
            <Card>
                 <Card.Content>
-                    <Card.Header><h1>8</h1></Card.Header>
-                    <Card.Meta>/f/, /v/</Card.Meta>
-                    <Card.Meta>
-                        <b>hint:</b> script f looks like a figure-8
-                    </Card.Meta>
-                    <Divider />
-                    <Card.Content>f, ph (in phone), v, gh (in laugh)</Card.Content>
-                </Card.Content>
-            </Card>
-            <Card>
-                <Card.Content>
                     <Card.Header><h1>9</h1></Card.Header>
                     <Card.Meta>/p/, /b/</Card.Meta>
                     <Card.Meta>

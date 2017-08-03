@@ -3,11 +3,6 @@ import { Set as set } from 'immutable';
 import { generateLevels } from '../utils';
 
 const initialState = {
-
-    navigation: {
-        mode: 'learn'
-    },
-
     learn: {
         inProgress: false,
         numQuestion: 1,

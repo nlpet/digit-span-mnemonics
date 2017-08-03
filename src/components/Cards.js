@@ -6,15 +6,6 @@ const Cards = () => {
         <Card.Group>
            <Card>
                 <Card.Content>
-                    <Card.Header><h1>5</h1></Card.Header>
-                    <Card.Meta>/l/</Card.Meta>
-                    <Card.Meta><b>hint:</b> L is the Roman numeral for 50</Card.Meta>
-                    <Divider />
-                    <Card.Content>l (lowercase of L)</Card.Content>
-                </Card.Content>
-            </Card>
-            <Card>
-                <Card.Content>
                     <Card.Header><h1>6</h1></Card.Header>
                     <Card.Meta>/tʃ/, /dʒ/, /ʃ/, /ʒ/</Card.Meta>
                     <Card.Meta><b>hint:</b> looks like flipped g</Card.Meta>

@@ -10,7 +10,6 @@ The goals are:
 
 Sentences are easier to remember, so this method should (remains to be tested) greatly improve one's recollection of strings of digits.
 
-**WORK IN PROGRESS**
 
 ## Usage
 

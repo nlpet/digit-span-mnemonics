@@ -1,15 +1,5 @@
 # Digit Span Mnemonics
 
-## About
-This is a simple app that is aimed at improving memory. I've used the game digit span as a metric.
-
-The goals are:  
-* Learn to encode numbers as letters using the [Mnemonic Major System](https://en.wikipedia.org/wiki/Mnemonic_major_system)  
-* Practice until the association becomes innate  
-* Learn to quickly insert vowels whenever appropriate to form words / phrases / whole sentences  
-
-Sentences are easier to remember, so this method should (remains to be tested) greatly improve one's recollection of strings of digits.
-
 ## Usage
 
 Install by running `npm install` or `yarn install`. To run the development build `npm start` or `yarn start` and for an optimized build, run:

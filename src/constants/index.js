@@ -3,18 +3,6 @@ import { Set as set } from 'immutable';
 import { generateLevels } from '../utils';
 
 const initialState = {
-    learn: {
-        inProgress: false,
-        numQuestion: 1,
-        questionsInSession: 10,
-        correctAnswers: 0,
-        wrongAnswers: 0,
-        help: false,
-        currentQuestion: {},
-        lastAnswer: {},
-        ended: false
-    },
-
     challenge: {
         inProgress: false,
         time: 60,

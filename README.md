@@ -25,11 +25,3 @@ If a build already exists and no changes have been introduced since the last bui
 
 To run tests `npm test` or `yarn test` and for test coverage report `npm test-report` or `yarn test-report`. To view the coverage html report, open `cover/index.html` in a browser.
 
-## Notes
-
-It uses local storage, so boards will be saved until the local storage is cleared. You can clear it by running
-
-```
-window.localStorage.clear()
-```
-in Chrome's console, for example.

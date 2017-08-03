@@ -1,6 +1,6 @@
 # Digit Span Mnemonics
 
-## About
+## Description
 This is a simple app that is aimed at improving memory. I've used the game digit span as a metric.
 
 The goals are:  
@@ -9,8 +9,6 @@ The goals are:
 * Learn to quickly insert vowels whenever appropriate to form words / phrases / whole sentences  
 
 Sentences are easier to remember, so this method should (remains to be tested) greatly improve one's recollection of strings of digits.
-
-**WORK IN PROGRESS**
 
 ## Usage
 

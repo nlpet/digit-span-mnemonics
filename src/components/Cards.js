@@ -4,16 +4,7 @@ import { Card, Divider } from 'semantic-ui-react';
 const Cards = () => {
     return (
         <Card.Group>
-            <Card>
-                <Card.Content>
-                    <Card.Header><h1>0</h1></Card.Header>
-                    <Card.Meta>/s/, /z/</Card.Meta>
-                    <Card.Meta><b>hint:</b> zero vertical strokes</Card.Meta>
-                    <Divider />
-                    <Card.Content>s, soft c, z, x (in xylophone)</Card.Content>
-                </Card.Content>
-            </Card>
-            <Card>
+           <Card>
                 <Card.Content>
                     <Card.Header><h1>1</h1></Card.Header>
                     <Card.Meta>/t/, /d/, (/θ/, /ð/)</Card.Meta>

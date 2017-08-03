@@ -6,15 +6,6 @@ const Cards = () => {
         <Card.Group>
            <Card>
                 <Card.Content>
-                    <Card.Header><h1>3</h1></Card.Header>
-                    <Card.Meta>/m/</Card.Meta>
-                    <Card.Meta><b>hint:</b> three vertical strokes</Card.Meta>
-                    <Divider />
-                    <Card.Content>m</Card.Content>
-                </Card.Content>
-            </Card>
-            <Card>
-                <Card.Content>
                     <Card.Header><h1>4</h1></Card.Header>
                     <Card.Meta>/r/</Card.Meta>
                     <Card.Meta><b>hint:</b> four ends with r</Card.Meta>

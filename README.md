@@ -1,6 +1,6 @@
 # Digit Span Mnemonics
 
-## Description
+## About
 This is a simple app that is aimed at improving memory. I've used the game digit span as a metric.
 
 The goals are:  

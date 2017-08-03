@@ -6,15 +6,6 @@ const Cards = () => {
         <Card.Group>
            <Card>
                 <Card.Content>
-                    <Card.Header><h1>7</h1></Card.Header>
-                    <Card.Meta>/k/, /ɡ/</Card.Meta>
-                    <Card.Meta><b>hint:</b> k look like two small 7s on their sides</Card.Meta>
-                    <Divider />
-                    <Card.Content>k, hard c, q, ch (in loch), hard g</Card.Content>
-                </Card.Content>
-            </Card>
-            <Card>
-                <Card.Content>
                     <Card.Header><h1>8</h1></Card.Header>
                     <Card.Meta>/f/, /v/</Card.Meta>
                     <Card.Meta>

@@ -6,20 +6,6 @@ const Cards = () => {
         <Card.Group>
            <Card>
                 <Card.Content>
-                    <Card.Header><h1>6</h1></Card.Header>
-                    <Card.Meta>/tʃ/, /dʒ/, /ʃ/, /ʒ/</Card.Meta>
-                    <Card.Meta><b>hint:</b> looks like flipped g</Card.Meta>
-                    <Divider />
-                    <Card.Content>
-                        ch (in cheese and chef), j, soft g, sh, c (in cello and special),
-                        cz (in Czech), s (in tissue and vision), sc (in fascist),
-                        sch (in schwa and eschew), t (in ration and equation),
-                        tsch (in putsch), z (in seizure)
-                    </Card.Content>
-                </Card.Content>
-            </Card>
-            <Card>
-                <Card.Content>
                     <Card.Header><h1>7</h1></Card.Header>
                     <Card.Meta>/k/, /ɡ/</Card.Meta>
                     <Card.Meta><b>hint:</b> k look like two small 7s on their sides</Card.Meta>

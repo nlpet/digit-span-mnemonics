@@ -1,7 +1,6 @@
 import { merge } from 'ramda';
 
 import {
-    START_PRACTICE,
     MARK_PRACTICE_ANSWER,
     TOGGLE_FEEDBACK,
     END_PRACTICE

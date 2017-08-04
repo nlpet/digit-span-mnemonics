@@ -3,11 +3,6 @@ import * as actionTypes from '../constants/actionTypes';
 
 
 
-export const toggleTimer = () => ({
-    type: actionTypes.TOGGLE_TIMER,
-    payload: { }
-});
-
 export const changeChallengeDifficulty = ({ level }) => ({
     type: actionTypes.CHANGE_CHALLENGE_DIFFICULTY,
     payload: { level }

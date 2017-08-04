@@ -1,4 +1,3 @@
-import { merge } from 'ramda';
 
 import { generateChallengeNumber, setDifficulty } from '../utils';
 

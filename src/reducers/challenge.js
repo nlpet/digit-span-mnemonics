@@ -1,7 +1,6 @@
 import { merge } from 'ramda';
 import { Set as set } from 'immutable';
 
-import { generateChallengeNumber } from '../utils';
 
 const challenge = (state = {}, action) => {
     switch (action.type) {

@@ -3,11 +3,6 @@ import * as actionTypes from '../constants/actionTypes';
 
 
 
-export const setNumberOfDigits = ({ numberOfDigits }) => ({
-    type: actionTypes.SET_NUMBER_OF_DIGITS,
-    payload: { numberOfDigits }
-});
-
 export const endChallenge = () => ({
     type: actionTypes.END_CHALLENGE,
     payload: { }

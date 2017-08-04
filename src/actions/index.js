@@ -3,11 +3,6 @@ import * as actionTypes from '../constants/actionTypes';
 
 
 
-export const endPractice = () => ({
-    type: actionTypes.END_PRACTICE,
-    payload: { }
-});
-
 export const toggleFeedback = () => ({
     type: actionTypes.TOGGLE_FEEDBACK,
     payload: { }

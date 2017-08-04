@@ -3,11 +3,6 @@ import * as actionTypes from '../constants/actionTypes';
 
 
 
-export const endChallenge = () => ({
-    type: actionTypes.END_CHALLENGE,
-    payload: { }
-});
-
 export const endPractice = () => ({
     type: actionTypes.END_PRACTICE,
     payload: { }

@@ -3,11 +3,6 @@ import * as actionTypes from '../constants/actionTypes';
 
 
 
-export const changeChallengeDifficulty = ({ level }) => ({
-    type: actionTypes.CHANGE_CHALLENGE_DIFFICULTY,
-    payload: { level }
-});
-
 export const changeTestDifficulty = ({ level }) => ({
     type: actionTypes.CHANGE_TEST_DIFFICULTY,
     payload: { level }

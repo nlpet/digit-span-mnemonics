@@ -3,7 +3,6 @@ import { Set as set } from 'immutable';
 
 
 const challenge = (state = {}, action) => {
-    switch (action.type) {
         case START_CHALLENGE:
             if (state.intervalId) clearInterval(state.intervalId);
 

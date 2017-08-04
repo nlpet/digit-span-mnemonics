@@ -1,4 +1,3 @@
-import { merge } from 'ramda';
 
 import {
     MARK_PRACTICE_ANSWER,

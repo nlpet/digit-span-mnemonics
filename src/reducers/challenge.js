@@ -3,12 +3,6 @@ import { Set as set } from 'immutable';
 
 import { generateChallengeNumber } from '../utils';
 
-import {
-    START_CHALLENGE, CHALLENGE_TIMER_TICK, MARK_CHALLENGE_ANSWER,
-    TOGGLE_TIMER, CHANGE_CHALLENGE_DIFFICULTY, END_CHALLENGE,
-    GENERATE_NEW_NUMBER
-} from '../constants/actionTypes';
-
 const challenge = (state = {}, action) => {
     switch (action.type) {
         case START_CHALLENGE:

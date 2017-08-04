@@ -2,11 +2,6 @@ import * as actionTypes from '../constants/actionTypes';
 
 
 
-export const markChallengeAnswer = ({ correct, answer }) => ({
-    type: actionTypes.MARK_CHALLENGE_ANSWER,
-    payload: { correct, answer }
-});
-
 export const markTestAnswer = ({ correct }) => ({
     type: actionTypes.MARK_TEST_ANSWER,
     payload: { correct }

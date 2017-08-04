@@ -1,10 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 
 
-export const startPractice = () => ({
-    type: actionTypes.START_PRACTICE,
-    payload: { }
-});
 
 export const startChallenge = ({ timer }) => ({
     type: actionTypes.START_CHALLENGE,

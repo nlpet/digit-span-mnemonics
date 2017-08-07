@@ -1,11 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 
 
-export const markTestAnswer = ({ correct }) => ({
-    type: actionTypes.MARK_TEST_ANSWER,
-    payload: { correct }
-})
-
 export const challengeTimerTick = () => ({
     type: actionTypes.CHALLENGE_TIMER_TICK,
     payload: { }

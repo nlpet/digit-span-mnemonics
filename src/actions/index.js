@@ -1,11 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 
 
-export const challengeTimerTick = () => ({
-    type: actionTypes.CHALLENGE_TIMER_TICK,
-    payload: { }
-});
-
 export const testTimerTick = () => ({
     type: actionTypes.TEST_TIMER_TICK,
     payload: { }

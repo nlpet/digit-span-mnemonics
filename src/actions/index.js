@@ -1,11 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 
 
-export const startTest = ({ timer }) => ({
-    type: actionTypes.START_TEST,
-    payload: { timer }
-});
-
 export const endTest = () => ({
     type: actionTypes.END_TEST,
     payload: { }

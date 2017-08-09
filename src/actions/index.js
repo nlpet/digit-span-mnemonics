@@ -1,11 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 
 
-export const toggleFeedback = () => ({
-    type: actionTypes.TOGGLE_FEEDBACK,
-    payload: { }
-});
-
 export const startTest = ({ timer }) => ({
     type: actionTypes.START_TEST,
     payload: { timer }

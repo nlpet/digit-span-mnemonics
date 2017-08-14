@@ -1,4 +1,3 @@
-import { Set as set } from 'immutable';
 
 import { generateLevels } from '../utils';
 

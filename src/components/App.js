@@ -1,7 +1,3 @@
-
-import Navigation from '../containers/Navigation';
-
-
 const App = () => {
     return (
         <div className="ui container">

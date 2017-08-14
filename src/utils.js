@@ -1,8 +1,3 @@
-import {
-    keys, map, range, head, countBy, prop
-} from 'ramda';
-import { fromJS } from 'immutable';
-
 const lettersAndSoundsToNums = {
     's': { num: '0', example: 'assess' },
     'soft c': { num: '0', example: 'acid & citrus' },

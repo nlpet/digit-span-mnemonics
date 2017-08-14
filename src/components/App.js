@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Games from '../containers/Games';
 import Navigation from '../containers/Navigation';

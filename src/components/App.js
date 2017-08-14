@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Games from '../containers/Games';
 import Navigation from '../containers/Navigation';
 
 

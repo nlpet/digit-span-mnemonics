@@ -1,6 +1,4 @@
 
-import { generateLevels } from '../utils';
-
 const initialState = {
 
     navigation: {

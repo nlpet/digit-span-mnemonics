@@ -1,4 +1,3 @@
-// import { createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import persistState from 'redux-localstorage';

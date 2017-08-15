@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux';
 import { Accordion, Header } from 'semantic-ui-react';
 
 import * as actions from '../actions';

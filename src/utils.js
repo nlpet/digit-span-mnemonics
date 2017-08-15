@@ -1,25 +1,3 @@
-import {
-    keys, map, range, head, countBy, prop
-} from 'ramda';
-import { fromJS } from 'immutable';
-
-
-const numToLetter = fromJS({
-    0: ['s', 'c', 'z', 'x'],
-    1: ['th', 't', 'd'],
-    2: ['n'],
-    3: ['m'],
-    4: ['r'],
-    5: ['l'],
-    6: [
-        'tsch', 'sch', 'ch', 'j', 'g', 'sh',
-        'c', 'cz', 'sc', 's', 't', 'z'
-    ],
-    7: ['ch', 'k', 'c', 'q', 'g'],
-    8: ['f', 'ph', 'v', 'gh'],
-    9: ['p', 'b', 'gh']
-});
-
 const lettersAndSoundsToNums = {
     's': { num: '0', example: 'assess' },
     'soft c': { num: '0', example: 'acid & citrus' },

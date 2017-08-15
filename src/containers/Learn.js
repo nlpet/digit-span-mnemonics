@@ -1,4 +1,3 @@
-import { Accordion, Header } from 'semantic-ui-react';
 
 import * as actions from '../actions';
 import Practice from '../containers/Practice';

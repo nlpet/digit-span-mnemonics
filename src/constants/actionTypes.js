@@ -1,4 +1,3 @@
-export const END_CHALLENGE = 'END_CHALLENGE';
 export const TOGGLE_FEEDBACK = 'TOGGLE_FEEDBACK';
 export const START_TEST = 'START_TEST';
 export const END_TEST = 'END_TEST';

@@ -1,12 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Accordion, Header } from 'semantic-ui-react';
 
 import * as actions from '../actions';
 import Practice from '../containers/Practice';
 import Reference from '../components/Reference';
-import Cards from '../components/Cards';
 
 const Learn = () => {
     const panels = [

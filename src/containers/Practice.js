@@ -13,36 +13,36 @@ import { getEmoji } from '../utils';
 
 
 const helpers = {
-    checkAnswer: (state, actions) => {
-        let correct;
-        const answerElement = document.getElementById("practiceAnswer");
-        const answer = toLower(answerElement.value);
+  checkAnswer: (state, actions) => {
+    let correct;
+    const answerElement = document.getElementById("practiceAnswer");
+    const answer = toLower(answerElement.value);
 
-        if (typeof state.currentQuestion.answer === 'string') {
-            correct = answer === state.currentQuestion.answer ? 1 : 0;
-        } else {
-            correct = contains(answer, state.currentQuestion.answer) ? 1 : 0;
-        }
-
-        answerElement.value = '';
-        return actions.markPracticeAnswer({
-            correct,
-            answer, correctAnswer: state.currentQuestion.answer
-        });
-    },
-    handleKeyPress: (e, state, actions) => {
-        if (e.key === 'Enter') helpers.checkAnswer(state, actions);
+    if (typeof state.currentQuestion.answer === 'string') {
+      correct = answer === state.currentQuestion.answer ? 1 : 0;
+    } else {
+      correct = contains(answer, state.currentQuestion.answer) ? 1 : 0;
     }
+
+    answerElement.value = '';
+    return actions.markPracticeAnswer({
+      correct,
+      answer, correctAnswer: state.currentQuestion.answer
+    });
+  },
+  handleKeyPress: (e, state, actions) => {
+    if (e.key === 'Enter') helpers.checkAnswer(state, actions);
+  }
 };
 
 const Practice = ({ learn, actions }) => {
-    const {
+  const {
         currentQuestion, correctAnswers, wrongAnswers, inProgress, ended
     } = learn;
-    const practiceGame = [];
+  const practiceGame = [];
 
-    if (inProgress) {
-        practiceGame.push(
+  if (inProgress) {
+    practiceGame.push(
             <Segment.Group horizontal key="practice">
                 <Segment>
                     <h3>{currentQuestion.text}</h3>
@@ -70,20 +70,20 @@ const Practice = ({ learn, actions }) => {
                 </Segment>
             </Segment.Group>
         );
-    } else if (ended) {
-        const p = Math.ceil((correctAnswers / (correctAnswers + wrongAnswers)) * 100);
-        const face = getEmoji(p);
-        const msg = `You got ${correctAnswers} answers right! ${face}`;
+  } else if (ended) {
+    const p = Math.ceil((correctAnswers / (correctAnswers + wrongAnswers)) * 100);
+    const face = getEmoji(p);
+    const msg = `You got ${correctAnswers} answers right! ${face}`;
 
-        practiceGame.push(
+    practiceGame.push(
             <div key="game-over">
                 <Divider />
                 <p>Game over! You got { msg }</p>
             </div>
         );
-    }
+  }
 
-    return (
+  return (
         <div>
             <Button color="violet" onClick={actions.startPractice}>New game</Button>
             <Button color="black" onClick={actions.endPractice}>
@@ -100,20 +100,20 @@ const Practice = ({ learn, actions }) => {
             </Button.Group>
             {practiceGame}
         </div>
-    );
+  );
 };
 
 Practice.propTypes = {
-    learn: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
+  learn: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    ...state
+  ...state
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(actions, dispatch)
+  actions: bindActionCreators(actions, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Practice);

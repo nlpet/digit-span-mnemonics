@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Divider } from 'semantic-ui-react';
 
 const Cards = () => {
-    return (
+  return (
         <Card.Group>
             <Card>
                 <Card.Content>
@@ -106,7 +106,7 @@ const Cards = () => {
             </Card>
 
         </Card.Group>
-    );
+  );
 };
 
 export default Cards;

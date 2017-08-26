@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "semantic-ui-react";
 
 const Reference = () => {
-    return (
+  return (
         <div>
             <h2>The Mnemonic Major System (in a nutshell)</h2>
             <Table celled>
@@ -169,7 +169,7 @@ const Reference = () => {
             for learning the The Mnemonic Major System (requires registration).
         </p>
         </div>
-    );
+  );
 };
 
 export default Reference;

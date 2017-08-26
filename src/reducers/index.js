@@ -6,10 +6,10 @@ import learn from './learn';
 import testing from './testing';
 
 const App = combineReducers({
-    navigation,
-    challenge,
-    learn,
-    testing
+  navigation,
+  challenge,
+  learn,
+  testing
 });
 
 

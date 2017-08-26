@@ -1,96 +1,101 @@
 import * as actionTypes from '../constants/actionTypes';
 
 export const changeMode = ({ mode }) => ({
-    type: actionTypes.CHANGE_MODE,
-    payload: { mode }
+  type: actionTypes.CHANGE_MODE,
+  payload: { mode }
 });
 
 export const startPractice = () => ({
-    type: actionTypes.START_PRACTICE,
-    payload: { }
+  type: actionTypes.START_PRACTICE,
+  payload: { }
 });
 
 export const startChallenge = ({ timer }) => ({
-    type: actionTypes.START_CHALLENGE,
-    payload: { timer }
+  type: actionTypes.START_CHALLENGE,
+  payload: { timer }
 });
 
 export const markPracticeAnswer = ({ correct, answer, correctAnswer }) => ({
-    type: actionTypes.MARK_PRACTICE_ANSWER,
-    payload: { correct, answer, correctAnswer }
+  type: actionTypes.MARK_PRACTICE_ANSWER,
+  payload: { correct, answer, correctAnswer }
 });
 
 export const markChallengeAnswer = ({ correct, answer }) => ({
-    type: actionTypes.MARK_CHALLENGE_ANSWER,
-    payload: { correct, answer }
+  type: actionTypes.MARK_CHALLENGE_ANSWER,
+  payload: { correct, answer }
 });
 
 export const markTestAnswer = ({ correct }) => ({
-    type: actionTypes.MARK_TEST_ANSWER,
-    payload: { correct }
-})
+  type: actionTypes.MARK_TEST_ANSWER,
+  payload: { correct }
+});
 
 export const challengeTimerTick = () => ({
-    type: actionTypes.CHALLENGE_TIMER_TICK,
-    payload: { }
+  type: actionTypes.CHALLENGE_TIMER_TICK,
+  payload: { }
 });
 
 export const testTimerTick = () => ({
-    type: actionTypes.TEST_TIMER_TICK,
-    payload: { }
+  type: actionTypes.TEST_TIMER_TICK,
+  payload: { }
 });
 
 export const toggleTimer = () => ({
-    type: actionTypes.TOGGLE_TIMER,
-    payload: { }
+  type: actionTypes.TOGGLE_TIMER,
+  payload: { }
+});
+
+export const toggleFlashMode = (checked) => ({
+  type: actionTypes.TOGGLE_FLASH_MODE,
+  payload: { checked }
 });
 
 export const changeChallengeDifficulty = ({ level }) => ({
-    type: actionTypes.CHANGE_CHALLENGE_DIFFICULTY,
-    payload: { level }
+  type: actionTypes.CHANGE_CHALLENGE_DIFFICULTY,
+  payload: { level }
 });
 
 export const changeTestDifficulty = ({ level }) => ({
-    type: actionTypes.CHANGE_TEST_DIFFICULTY,
-    payload: { level }
+  type: actionTypes.CHANGE_TEST_DIFFICULTY,
+  payload: { level }
 });
 
 export const setNumberOfDigits = ({ numberOfDigits }) => ({
-    type: actionTypes.SET_NUMBER_OF_DIGITS,
-    payload: { numberOfDigits }
+  type: actionTypes.SET_NUMBER_OF_DIGITS,
+  payload: { numberOfDigits }
 });
 
 export const endChallenge = () => ({
-    type: actionTypes.END_CHALLENGE,
-    payload: { }
+  type: actionTypes.END_CHALLENGE,
+  payload: { }
 });
 
 export const endPractice = () => ({
-    type: actionTypes.END_PRACTICE,
-    payload: { }
+  type: actionTypes.END_PRACTICE,
+  payload: { }
 });
 
 export const toggleFeedback = () => ({
-    type: actionTypes.TOGGLE_FEEDBACK,
-    payload: { }
+  type: actionTypes.TOGGLE_FEEDBACK,
+  payload: { }
 });
 
 export const startTest = ({ timer }) => ({
-    type: actionTypes.START_TEST,
-    payload: { timer }
+  type: actionTypes.START_TEST,
+  payload: { timer }
 });
 
 export const endTest = () => ({
-    type: actionTypes.END_TEST,
-    payload: { }
+  type: actionTypes.END_TEST,
+  payload: { }
 });
 
 export const generateNumber = () => ({
-    type: actionTypes.GENERATE_NEW_NUMBER,
-    payload: { }
+  type: actionTypes.GENERATE_NEW_NUMBER,
+  payload: { }
 });
 
 export const setTimerToZero = () => ({
-    type: actionTypes.SET_TIMER_TO_ZERO,
-    payload: { }
+  type: actionTypes.SET_TIMER_TO_ZERO,
+  payload: { }
 });

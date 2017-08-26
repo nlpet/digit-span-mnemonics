@@ -10,27 +10,27 @@ import Testing from './Testing';
 
 
 const Games = ({ navigation }) => {
-    const gamesObj = {
-        learn: <Learn />,
-        challenge: <Challenge />,
-        test: <Testing />
-    };
+  const gamesObj = {
+    learn: <Learn />,
+    challenge: <Challenge />,
+    test: <Testing />
+  };
 
-    return <div>{gamesObj[navigation.mode]}</div>;
+  return <div>{gamesObj[navigation.mode]}</div>;
 };
 
 
 Games.propTypes = {
-    navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired
 };
 
 
 const mapStateToProps = (state) => ({
-    ...state
+  ...state
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(actions, dispatch)
+  actions: bindActionCreators(actions, dispatch)
 });
 
 

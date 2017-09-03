@@ -11,56 +11,56 @@ import { verifyAnswer, getEmoji, getTimeIcon } from '../utils';
 
 
 const helpers = {
-    handleKeyPress: (e, checkAnswer, state, actions) => {
-        if (e.key === 'Enter') checkAnswer(state, actions);
-    },
-    checkAnswer: (state, actions) => {
-        const answer = toLower(document.getElementById("challengeAnswer").value);
+  handleKeyPress: (e, checkAnswer, state, actions) => {
+    if (e.key === 'Enter') checkAnswer(state, actions);
+  },
+  checkAnswer: (state, actions) => {
+    const answer = toLower(document.getElementById("challengeAnswer").value);
 
-        if (state.uniqueAnswers.has(answer)) return false;
-        if (answer.length && !state.paused) {
-            return actions.markChallengeAnswer({
-                answer,
-                correct: verifyAnswer(answer, state.challengeNumber)
-            });
-        }
-        return false;
-    },
-    changeDifficulty: (e, data, actions) => {
-        return actions.changeChallengeDifficulty({ level: data.value });
-    },
-    refreshNumber: (state, actions) => {
-        if (!state.paused) actions.generateNumber();
+    if (state.uniqueAnswers.has(answer)) return false;
+    if (answer.length && !state.paused) {
+      return actions.markChallengeAnswer({
+        answer,
+        correct: verifyAnswer(answer, state.challengeNumber)
+      });
     }
+    return false;
+  },
+  changeDifficulty: (e, data, actions) => {
+    return actions.changeChallengeDifficulty({ level: data.value });
+  },
+  refreshNumber: (state, actions) => {
+    if (!state.paused) actions.generateNumber();
+  }
 };
 
 const Challenge = ({ challenge, actions }) => {
-    let challengeGame;
-    const answersList = [];
-    const {
+  let challengeGame;
+  const answersList = [];
+  const {
         inProgress, time, correctAnswers, ended,
         wrongAnswers, answers, paused, challengeNumber,
         levels, difficulty
     } = challenge;
-    const len = answers.length > 15 ? Math.ceil(answers.length / 3) : 5;
-    const numPlaceholder = repeat('˟', difficulty).join(' ');
+  const len = answers.length > 15 ? Math.ceil(answers.length / 3) : 5;
+  const numPlaceholder = repeat('˟', difficulty).join(' ');
 
-    answers.forEach((item, i) => {
-        const style = {
-            textDecoration: item.correct ? "none" : "line-through",
-            color: item.correct ? "black" : "gray"
-        };
+  answers.forEach((item, i) => {
+    const style = {
+      textDecoration: item.correct ? "none" : "line-through",
+      color: item.correct ? "black" : "gray"
+    };
 
-        answersList.push(
+    answersList.push(
             <List.Item key={i}>
                 <p style={style}>
                     {item.answer}
                 </p>
             </List.Item>);
-    });
+  });
 
-    if (inProgress && time >= 0 && !ended) {
-        challengeGame = (
+  if (inProgress && time >= 0 && !ended) {
+    challengeGame = (
             <div>
                 <Divider />
                 <Grid columns={3}>
@@ -90,22 +90,22 @@ const Challenge = ({ challenge, actions }) => {
                 </Button>
             </div>
         );
-    } else if (ended) {
-        const p = Math.ceil((correctAnswers / (correctAnswers + wrongAnswers)) * 100);
-        const face = getEmoji(p);
+  } else if (ended) {
+    const p = Math.ceil((correctAnswers / (correctAnswers + wrongAnswers)) * 100);
+    const face = getEmoji(p);
 
-        const msg = `You got ${correctAnswers} words right, `;
-        const accuracy = `with ${ isNaN(p) ? 0 : p }% accuracy ${face}`;
+    const msg = `You got ${correctAnswers} words right, `;
+    const accuracy = `with ${ isNaN(p) ? 0 : p }% accuracy ${face}`;
 
-        challengeGame = (
+    challengeGame = (
             <div>
                 <Divider />
                 <p>Game over! { msg } { accuracy }</p>
             </div>
         );
-    }
+  }
 
-    return (
+  return (
         <div>
             <Header as="h2">
                 Challenge Mode
@@ -162,22 +162,22 @@ const Challenge = ({ challenge, actions }) => {
                 }
             </Segment.Group>
         </div>
-    );
+  );
 };
 
 
 Challenge.propTypes = {
-    challenge: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
+  challenge: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 
 const mapStateToProps = (state) => ({
-    ...state
+  ...state
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(actions, dispatch)
+  actions: bindActionCreators(actions, dispatch)
 });
 
 

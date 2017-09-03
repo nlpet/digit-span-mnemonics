@@ -1,5 +1,5 @@
 const App = () => {
-    return (
+  return (
         <div className="ui container">
             <br />
             <h1 className="ui dividing header">Digit Span Mnemonics System (DSMS)</h1>
@@ -20,11 +20,11 @@ const App = () => {
             <Navigation />
             <Games />
         </div>
-    );
+  );
 };
 
 App.PropTypes = {
-    match: PropTypes.string
+  match: PropTypes.string
 };
 
 export default App;

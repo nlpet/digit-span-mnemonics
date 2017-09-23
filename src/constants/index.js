@@ -6,11 +6,16 @@ import {Set as set} from "immutable";
 
 import {generateLevels} from "../utils";
 
+export const typeConversions = {
+  challenge: {
+    uniqueAnswers: "Set",
+  },
+};
+
 export const initialState: InitialState = {
   navigation: {
     mode: "learn",
   },
-
   learn: {
     inProgress: false,
     numQuestion: 1,
@@ -23,7 +28,6 @@ export const initialState: InitialState = {
     ended: false,
     feedback: false,
   },
-
   challenge: {
     inProgress: false,
     time: 60,
@@ -39,7 +43,6 @@ export const initialState: InitialState = {
     ended: false,
     levels: generateLevels(2, 11),
   },
-
   testing: {
     roundNum: 0,
     rounds: 10,

@@ -94,7 +94,7 @@ export function getRandomInteger(n: number): number {
 }
 
 export function generateChallengeNumber(n: number): string {
-  return map(getRandomInteger, Array(n).fill(10)).join(" ");
+  return map(getRandomInteger, Array(n).fill(n)).join(" ");
 }
 
 export function generateStep() {

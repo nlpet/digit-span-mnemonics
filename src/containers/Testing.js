@@ -15,7 +15,7 @@ import {
 } from "semantic-ui-react";
 
 import * as actions from "../actions";
-import {getEmoji} from "../utils";
+import {getEmoji, safelyGetHtmlElementAndValue} from "../utils";
 
 const helpers = {
   handleKeyPress: (e, checkAnswer, state, actions) => {
@@ -28,8 +28,7 @@ const helpers = {
     return actions.setNumberOfDigits({numberOfDigits: data.value});
   },
   checkAnswer: (state, actions) => {
-    const answerElement = document.getElementById("testAnswer");
-    const answer = answerElement.value;
+    const [answer, answerElement] = safelyGetHtmlElementAndValue("testAnswer");
     const number = state.challengeNumber.replace(/[\s]/g, "");
 
     answerElement.value = "";
@@ -41,7 +40,7 @@ const Testing = ({testing, actions}) => {
   let testGame;
   const {
     inProgress,
-    range,
+    levels,
     challengeNumber,
     flashMode,
     ended,
@@ -131,7 +130,7 @@ const Testing = ({testing, actions}) => {
             selection
             disabled={inProgress}
             placeholder="number of digits"
-            options={range}
+            options={levels}
             onChange={(e, data) => helpers.setNumberOfDigits(e, data, actions)}
           />
           <Checkbox

@@ -37,7 +37,7 @@ const testing = (state: TestState, action: Action) => {
         flashMode: action.payload.checked,
       });
     case START_TEST:
-      if (state.intervalId) clearInterval(state.intervalId);
+      if (state.intervalId !== -1) clearInterval(state.intervalId);
 
       return merge(state, {
         ended: false,
@@ -53,11 +53,11 @@ const testing = (state: TestState, action: Action) => {
       });
     case END_TEST:
       if (state.inProgress) {
-        if (state.intervalId) clearInterval(state.intervalId);
+        if (state.intervalId !== -1) clearInterval(state.intervalId);
 
         return merge(state, {
           inProgress: false,
-          intervalId: null,
+          intervalId: -1,
           digitIndex: 0,
           time: 0,
           ended: true,
@@ -73,7 +73,7 @@ const testing = (state: TestState, action: Action) => {
           return merge(state, {
             ended: true,
             inProgress: false,
-            intervalId: null,
+            intervalId: -1,
           });
         }
 
@@ -91,7 +91,7 @@ const testing = (state: TestState, action: Action) => {
         return merge(state, {
           ended: true,
           inProgress: false,
-          intervalId: null,
+          intervalId: -1,
           correctAnswers: state.correctAnswers + action.payload.correct,
           wrongAnswers: state.wrongAnswers + (1 ^ action.payload.correct),
         });

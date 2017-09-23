@@ -39,11 +39,11 @@ const challenge = (state: ChallengeState, action: Action) => {
       });
     case END_CHALLENGE:
       if (state.inProgress) {
-        if (state.intervalId) clearInterval(state.intervalId);
+        if (state.intervalId !== -1) clearInterval(state.intervalId);
 
         return merge(state, {
           inProgress: false,
-          intervalId: null,
+          intervalId: -1,
           paused: false,
           ended: true,
           time: 0,

@@ -1,7 +1,14 @@
 // @flow
 
-import type {Level} from "../types";
+import type {Level, Difficulty} from "../types";
 import type {Set} from "immutable";
+
+export type InitialState = {
+  navigation: NavigationState,
+  learn: LearnState,
+  challenge: ChallengeState,
+  testing: TestState,
+};
 
 export type TestState = {
   roundNum: number,
@@ -14,15 +21,17 @@ export type TestState = {
   difficulty: string,
   time: number,
   challengeNumber: null | string,
-  range: Array<number>,
-  difficulties: Level[],
-  ended: false,
+  levels: Level[],
+  difficulties: Difficulty[],
+  ended: boolean,
   correctAnswers: 0,
   wrongAnswers: 0,
 };
 
+export type Mode = "learn" | "challenge" | "test";
+
 export type NavigationState = {
-  mode: string,
+  mode: Mode,
 };
 
 export type LearnState = {

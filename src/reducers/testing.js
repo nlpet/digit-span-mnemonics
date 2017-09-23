@@ -1,8 +1,12 @@
 // @flow
 
+import type {Action} from "../types";
+import type {TestState} from "./types";
+
 import {merge} from "ramda";
 
 import {generateChallengeNumber, setDifficulty} from "../utils";
+import {initialState} from "../constants";
 
 import {
   CHANGE_TEST_DIFFICULTY,
@@ -15,7 +19,8 @@ import {
   SET_TIMER_TO_ZERO,
 } from "../constants/actionTypes";
 
-const testing = (state = {}, action) => {
+const testing = (state: TestState, action: Action) => {
+  if (!state) return initialState.testing;
   switch (action.type) {
     case CHANGE_TEST_DIFFICULTY:
       return merge(state, {

@@ -8,13 +8,15 @@ import PropTypes from "prop-types";
 import {Segment, Button, Input, Divider, Message} from "semantic-ui-react";
 
 import * as actions from "../actions";
-import {getEmoji} from "../utils";
+import {getEmoji, safelyGetHtmlElementAndValue} from "../utils";
 
 const helpers = {
   checkAnswer: (state, actions) => {
     let correct;
-    const answerElement = document.getElementById("practiceAnswer");
-    const answer = toLower(answerElement.value);
+    const [answerString, answerElement] = safelyGetHtmlElementAndValue(
+      "practiceAnswer",
+    );
+    const answer = toLower(answerString);
 
     if (typeof state.currentQuestion.answer === "string") {
       correct = answer === state.currentQuestion.answer ? 1 : 0;
@@ -22,7 +24,10 @@ const helpers = {
       correct = contains(answer, state.currentQuestion.answer) ? 1 : 0;
     }
 
-    answerElement.value = "";
+    if (answerElement instanceof HTMLInputElement) {
+      answerElement.value = "";
+    }
+
     return actions.markPracticeAnswer({
       correct,
       answer,

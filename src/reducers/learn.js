@@ -1,5 +1,8 @@
 // @flow
 
+import type {Action} from "../types";
+import type {LearnState} from "./types";
+
 import {merge} from "ramda";
 
 import {
@@ -10,8 +13,10 @@ import {
 } from "../constants/actionTypes";
 
 import {getHint, generateStep} from "../utils";
+import {initialState} from "../constants";
 
-const learn = (state = {}, action) => {
+const learn = (state: LearnState, action: Action) => {
+  if (!state) return initialState.learn;
   switch (action.type) {
     case START_PRACTICE:
       return merge(state, {

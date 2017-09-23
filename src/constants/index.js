@@ -4,7 +4,7 @@ import {Set as set} from "immutable";
 
 import {generateLevels} from "../utils";
 
-const initialState = {
+export const initialState = {
   navigation: {
     mode: "learn",
   },
@@ -19,6 +19,7 @@ const initialState = {
     currentQuestion: {},
     lastAnswer: {},
     ended: false,
+    feedback: false,
   },
 
   challenge: {
@@ -26,7 +27,7 @@ const initialState = {
     time: 60,
     correctAnswers: 0,
     wrongAnswers: 0,
-    intervalId: null,
+    intervalId: -1,
     answers: [],
     uniqueAnswers: set(),
     paused: false,
@@ -59,5 +60,3 @@ const initialState = {
     wrongAnswers: 0,
   },
 };
-
-export {initialState};

@@ -1,9 +1,13 @@
 // @flow
 
+import type {Action} from "../types";
+import type {ChallengeState} from "./types";
+
 import {merge} from "ramda";
 import {Set as set} from "immutable";
 
 import {generateChallengeNumber} from "../utils";
+import {initialState} from "../constants";
 
 import {
   START_CHALLENGE,
@@ -15,7 +19,8 @@ import {
   GENERATE_NEW_NUMBER,
 } from "../constants/actionTypes";
 
-const challenge = (state = {}, action) => {
+const challenge = (state: ChallengeState, action: Action) => {
+  if (!state) return initialState.challenge;
   switch (action.type) {
     case START_CHALLENGE:
       if (state.intervalId) clearInterval(state.intervalId);

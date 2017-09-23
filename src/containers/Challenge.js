@@ -17,14 +17,20 @@ import {
 } from "semantic-ui-react";
 
 import * as actions from "../actions";
-import {verifyAnswer, getEmoji, getTimeIcon} from "../utils";
+import {
+  verifyAnswer,
+  getEmoji,
+  getTimeIcon,
+  safelyGetHtmlElementAndValue,
+} from "../utils";
 
 const helpers = {
   handleKeyPress: (e, checkAnswer, state, actions) => {
     if (e.key === "Enter") checkAnswer(state, actions);
   },
   checkAnswer: (state, actions) => {
-    const answer = toLower(document.getElementById("challengeAnswer").value);
+    const [answerString] = safelyGetHtmlElementAndValue("challengeAnswer");
+    const answer = toLower(answerString);
 
     if (state.uniqueAnswers.has(answer)) return false;
     if (answer.length && !state.paused) {

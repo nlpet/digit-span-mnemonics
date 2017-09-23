@@ -1,11 +1,12 @@
-import { Set as set } from 'immutable';
+// @flow
 
-import { generateLevels } from '../utils';
+import {Set as set} from "immutable";
+
+import {generateLevels} from "../utils";
 
 const initialState = {
-
   navigation: {
-    mode: 'learn'
+    mode: "learn",
   },
 
   learn: {
@@ -17,7 +18,7 @@ const initialState = {
     help: false,
     currentQuestion: {},
     lastAnswer: {},
-    ended: false
+    ended: false,
   },
 
   challenge: {
@@ -32,7 +33,7 @@ const initialState = {
     difficulty: 3,
     challengeNumber: null,
     ended: false,
-    levels: generateLevels(2, 11)
+    levels: generateLevels(2, 11),
   },
 
   testing: {
@@ -43,22 +44,20 @@ const initialState = {
     numberOfDigits: 5,
     digitIndex: 0,
     flashMode: false,
-    difficulty: 'easy',
+    difficulty: "easy",
     time: 5,
     challengeNumber: null,
     range: generateLevels(3, 46),
     difficulties: [
-      { key: 'easy', value: 'easy', text: 'easy' },
-      { key: 'medium', value: 'medium', text: 'medium' },
-      { key: 'hard', value: 'hard', text: 'hard' },
-      { key: 'impossible', value: 'impossible', text: 'impossible' }
+      {key: "easy", value: "easy", text: "easy"},
+      {key: "medium", value: "medium", text: "medium"},
+      {key: "hard", value: "hard", text: "hard"},
+      {key: "impossible", value: "impossible", text: "impossible"},
     ],
     ended: false,
     correctAnswers: 0,
-    wrongAnswers: 0
-  }
+    wrongAnswers: 0,
+  },
 };
 
-export {
-  initialState
-};
+export {initialState};

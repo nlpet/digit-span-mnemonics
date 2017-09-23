@@ -21,7 +21,8 @@
   ],
   "extends": [
     "prettier",
-    "prettier/react"
+    "prettier/react",
+    "plugin:flowtype/recommended"
   ],
   "rules": {
     "prettier/prettier": ["error", {

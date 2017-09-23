@@ -1,13 +1,19 @@
-import { merge } from 'ramda';
-import { Set as set } from 'immutable';
+// @flow
 
-import { generateChallengeNumber } from '../utils';
+import {merge} from "ramda";
+import {Set as set} from "immutable";
+
+import {generateChallengeNumber} from "../utils";
 
 import {
-    START_CHALLENGE, CHALLENGE_TIMER_TICK, MARK_CHALLENGE_ANSWER,
-    TOGGLE_TIMER, CHANGE_CHALLENGE_DIFFICULTY, END_CHALLENGE,
-    GENERATE_NEW_NUMBER
-} from '../constants/actionTypes';
+  START_CHALLENGE,
+  CHALLENGE_TIMER_TICK,
+  MARK_CHALLENGE_ANSWER,
+  TOGGLE_TIMER,
+  CHANGE_CHALLENGE_DIFFICULTY,
+  END_CHALLENGE,
+  GENERATE_NEW_NUMBER,
+} from "../constants/actionTypes";
 
 const challenge = (state = {}, action) => {
   switch (action.type) {
@@ -24,7 +30,7 @@ const challenge = (state = {}, action) => {
         uniqueAnswers: set(),
         paused: false,
         challengeNumber: generateChallengeNumber(state.difficulty),
-        ended: false
+        ended: false,
       });
     case END_CHALLENGE:
       if (state.inProgress) {
@@ -35,7 +41,7 @@ const challenge = (state = {}, action) => {
           intervalId: null,
           paused: false,
           ended: true,
-          time: 0
+          time: 0,
         });
       }
 
@@ -43,14 +49,14 @@ const challenge = (state = {}, action) => {
     case CHALLENGE_TIMER_TICK:
       if (state.time === 0) {
         clearInterval(state.intervalId);
-        return merge(state, { time: 0, ended: true, inProgress: false });
+        return merge(state, {time: 0, ended: true, inProgress: false});
       } else if (!state.paused) {
-        return merge(state, { time: state.time - 1 });
+        return merge(state, {time: state.time - 1});
       }
 
       return state;
     case TOGGLE_TIMER:
-      return merge(state, { paused: !state.paused });
+      return merge(state, {paused: !state.paused});
     case MARK_CHALLENGE_ANSWER:
       return merge(state, {
         numQuestion: state.numQuestion + 1,
@@ -61,17 +67,17 @@ const challenge = (state = {}, action) => {
           ...state.answers,
           {
             answer: action.payload.answer,
-            correct: action.payload.correct
-          }
-        ]
+            correct: action.payload.correct,
+          },
+        ],
       });
     case CHANGE_CHALLENGE_DIFFICULTY:
       return merge(state, {
-        difficulty: action.payload.level
+        difficulty: action.payload.level,
       });
     case GENERATE_NEW_NUMBER:
       return merge(state, {
-        challengeNumber: generateChallengeNumber(state.difficulty)
+        challengeNumber: generateChallengeNumber(state.difficulty),
       });
     default:
       return state;

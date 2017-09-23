@@ -13,6 +13,7 @@ import {getEmoji, safelyGetHtmlElementAndValue} from "../utils";
 const helpers = {
   checkAnswer: (state, actions) => {
     let correct;
+    let correctAnswer;
     const [answerString, answerElement] = safelyGetHtmlElementAndValue(
       "practiceAnswer",
     );
@@ -20,8 +21,10 @@ const helpers = {
 
     if (typeof state.currentQuestion.answer === "string") {
       correct = answer === state.currentQuestion.answer ? 1 : 0;
+      correctAnswer = {single: state.currentQuestion.answer};
     } else {
       correct = contains(answer, state.currentQuestion.answer) ? 1 : 0;
+      correctAnswer = {multiple: state.currentQuestion.answer};
     }
 
     if (answerElement instanceof HTMLInputElement) {
@@ -31,7 +34,7 @@ const helpers = {
     return actions.markPracticeAnswer({
       correct,
       answer,
-      correctAnswer: state.currentQuestion.answer,
+      correctAnswer,
     });
   },
   handleKeyPress: (e, state, actions) => {

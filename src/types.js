@@ -20,3 +20,17 @@ export type Action = {
   type: string,
   payload: Object,
 };
+
+export type LettersAndSoundsToNums = {
+  [letter: string]: Example,
+};
+
+export type Example = {
+  num: string,
+  example: string,
+};
+
+export type Answer = {
+  single?: string,
+  multiple?: Array<string>,
+};

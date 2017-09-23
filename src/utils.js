@@ -1,6 +1,6 @@
 // @flow
 
-import type {HTMLElement, Level} from "./types";
+import type {HTMLElement, Level, LettersAndSoundsToNums, Answer} from "./types";
 
 import {keys, map, range, head, countBy, prop} from "ramda";
 import {fromJS} from "immutable";
@@ -26,7 +26,7 @@ export const numToLetter = fromJS({
   "9": ["p", "b", "gh"],
 });
 
-export const lettersAndSoundsToNums: Object = {
+export const lettersAndSoundsToNums: LettersAndSoundsToNums = {
   s: {num: "0", example: "assess"},
   "soft c": {num: "0", example: "acid & citrus"},
   z: {num: "0", example: "size"},
@@ -178,18 +178,24 @@ export function verifyAnswer(answer: string, challengeNumber: string): boolean {
   return answer.length === 0 && flag;
 }
 
-export function getHint(answer: string) {
-  if (typeof answer === "string") {
-    return answersAndHints.get(answer, `No hint available for ${answer} :()`);
+export function getHint(answer: Answer): string {
+  if (answer.single) {
+    return answersAndHints.get(
+      answer.single,
+      `No hint available for ${answer.single} :()`,
+    );
+  } else if (answer.multiple) {
+    const first = head(answer.multiple);
+    if (!first) throw new Error("No answers available!");
+    const numObj = prop(first, lettersAndSoundsToNums) || {};
+
+    return answersAndHints.get(
+      numObj.num,
+      `No hint available for ${numObj.num} :o`,
+    );
   }
 
-  const first = head(answer);
-  const numObj = prop(first, lettersAndSoundsToNums);
-
-  return answersAndHints.get(
-    numObj.num,
-    `No hint available for ${numObj.num} :o`,
-  );
+  return `No hint available for unknown ${JSON.stringify(answer)}`;
 }
 
 export function setDifficulty(difficulty: string, numberOfDigits: number) {
@@ -197,6 +203,7 @@ export function setDifficulty(difficulty: string, numberOfDigits: number) {
 
   if (numberOfDigits > 9) {
     multipliers = map(a => a + 0.4, multipliers);
+    return Math.floor(numberOfDigits * multipliers[difficulty]);
   }
   return Math.ceil(numberOfDigits * multipliers[difficulty]);
 }

@@ -1,6 +1,7 @@
 [ignore]
 .*/node_modules/editions/.*
-.*/node_modules/eslint-plugin-jsx-a11y/.*
+.*/node_modules/react-scripts/node_modules/eslint-plugin-jsx-a11y/.*
+.*/node_modules/immutable/.*
 
 [libs]
 <PROJECT_ROOT>/flow-typed/

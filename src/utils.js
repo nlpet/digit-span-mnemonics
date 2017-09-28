@@ -1,7 +1,7 @@
 import {
     keys, map, range, head, countBy, prop
 } from 'ramda';
-import { fromJS } from 'immutable';
+import { fromJS } from 'immutable'; import { fromJS } from 'immutable'; import {fromJS} from 'immutable';
 
 
 const numToLetter = fromJS({

@@ -1,6 +1,8 @@
+// @flow
+
 import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import PropTypes from "prop-types";
 import {
   Header,
@@ -9,37 +11,36 @@ import {
   Dropdown,
   Input,
   Divider,
-  Checkbox
+  Checkbox,
 } from "semantic-ui-react";
 
 import * as actions from "../actions";
-import { getEmoji } from "../utils";
+import {getEmoji, safelyGetHtmlElementAndValue} from "../utils";
 
 const helpers = {
   handleKeyPress: (e, checkAnswer, state, actions) => {
     if (e.key === "Enter") checkAnswer(state, actions);
   },
   changeDifficulty: (e, data, actions) => {
-    return actions.changeTestDifficulty({ level: data.value });
+    return actions.changeTestDifficulty({level: data.value});
   },
   setNumberOfDigits: (e, data, actions) => {
-    return actions.setNumberOfDigits({ numberOfDigits: data.value });
+    return actions.setNumberOfDigits({numberOfDigits: data.value});
   },
   checkAnswer: (state, actions) => {
-    const answerElement = document.getElementById("testAnswer");
-    const answer = answerElement.value;
+    const [answer, answerElement] = safelyGetHtmlElementAndValue("testAnswer");
     const number = state.challengeNumber.replace(/[\s]/g, "");
 
     answerElement.value = "";
-    return actions.markTestAnswer({ correct: answer === number });
-  }
+    return actions.markTestAnswer({correct: answer === number});
+  },
 };
 
-const Testing = ({ testing, actions }) => {
+const Testing = ({testing, actions}) => {
   let testGame;
   const {
     inProgress,
-    range,
+    levels,
     challengeNumber,
     flashMode,
     ended,
@@ -47,21 +48,21 @@ const Testing = ({ testing, actions }) => {
     time,
     correctAnswers,
     wrongAnswers,
-    difficulties
+    difficulties,
   } = testing;
 
   if (inProgress && !ended) {
-    const displayNumber = flashMode ? challengeNumber[digitIndex] : challengeNumber;
+    const displayNumber = flashMode
+      ? challengeNumber[digitIndex]
+      : challengeNumber;
     const number = time > 0 ? displayNumber : " ";
 
     testGame = (
       <div>
-        <h1 style={{ marginTop: "20px", height: "40px" }}>
-          {number}
-        </h1>
+        <h1 style={{marginTop: "20px", height: "40px"}}>{number}</h1>
         <Input
           disabled={time > 0}
-          style={{ marginRight: "10px" }}
+          style={{marginRight: "10px"}}
           placeholder="Answer..."
           onKeyPress={e =>
             helpers.handleKeyPress(e, helpers.checkAnswer, testing, actions)}
@@ -74,11 +75,11 @@ const Testing = ({ testing, actions }) => {
         >
           Submit
         </Button>
-        {flashMode ?
-          null :
+        {flashMode ? null : (
           <Button color="instagram" onClick={actions.setTimerToZero}>
-          I am ready!
-        </Button>}
+            I am ready!
+          </Button>
+        )}
       </div>
     );
   } else if (ended) {
@@ -109,7 +110,7 @@ const Testing = ({ testing, actions }) => {
         <Segment>
           <Button
             color="teal"
-            onClick={() => actions.startTest({ timer: actions.testTimerTick })}
+            onClick={() => actions.startTest({timer: actions.testTimerTick})}
           >
             New game
           </Button>
@@ -117,7 +118,7 @@ const Testing = ({ testing, actions }) => {
             End game
           </Button>
           <Dropdown
-            style={{ marginRight: "10px", marginLeft: "5px" }}
+            style={{marginRight: "10px", marginLeft: "5px"}}
             selection
             disabled={inProgress}
             placeholder="difficulty"
@@ -125,11 +126,11 @@ const Testing = ({ testing, actions }) => {
             onChange={(e, data) => helpers.changeDifficulty(e, data, actions)}
           />
           <Dropdown
-            style={{ marginRight: "10px" }}
+            style={{marginRight: "10px"}}
             selection
             disabled={inProgress}
             placeholder="number of digits"
-            options={range}
+            options={levels}
             onChange={(e, data) => helpers.setNumberOfDigits(e, data, actions)}
           />
           <Checkbox
@@ -141,26 +142,22 @@ const Testing = ({ testing, actions }) => {
           />
           {testGame}
         </Segment>
-        {inProgress && (time >= 0 || flashMode) ?
+        {inProgress && (time >= 0 || flashMode) ? (
           <Segment>
-              <div>
-                <h2>
-                  <i className="fa fa-clock-o" aria-hidden="true" />
-                  &nbsp;&nbsp;
-                  {time}
-                </h2>
-                <p>
-                  <b>
-                    Correct: {correctAnswers}
-                  </b>
-                  <br />
-                  <b>
-                    Wrong: {wrongAnswers}
-                  </b>
-                </p>
-              </div>
-            </Segment> :
-          null}
+            <div>
+              <h2>
+                <i className="fa fa-clock-o" aria-hidden="true" />
+                &nbsp;&nbsp;
+                {time}
+              </h2>
+              <p>
+                <b>Correct: {correctAnswers}</b>
+                <br />
+                <b>Wrong: {wrongAnswers}</b>
+              </p>
+            </div>
+          </Segment>
+        ) : null}
       </Segment.Group>
     </div>
   );
@@ -168,15 +165,15 @@ const Testing = ({ testing, actions }) => {
 
 Testing.propTypes = {
   testing: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  ...state
+  ...state,
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
+  actions: bindActionCreators(actions, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Testing);

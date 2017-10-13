@@ -1,16 +1,17 @@
-import { combineReducers } from 'redux';
+// @flow
 
-import navigation from './navigation';
-import challenge from './challenge';
-import learn from './learn';
-import testing from './testing';
+import {combineReducers} from "redux";
+
+import navigation from "./navigation";
+import challenge from "./challenge";
+import learn from "./learn";
+import testing from "./testing";
 
 const App = combineReducers({
   navigation,
   challenge,
   learn,
-  testing
+  testing,
 });
-
 
 export default App;

@@ -17,7 +17,7 @@ test("generate a string of random integer characters separated by spaces", t => 
   const challengeNumber = utils.generateChallengeNumber(n);
   const challengeNumberNoSpaces = challengeNumber.replace(/[\s]/g, "");
 
-  t.true(
+  t.false(
     challengeNumber.length - challengeNumberNoSpaces.length ===
       Math.floor(challengeNumber.length / 2),
   );

@@ -102,4 +102,6 @@ test("set difficulty", t => {
   t.is(utils.setDifficulty("medium", 10), 10);
   t.is(utils.setDifficulty("hard", 10), 8);
   t.is(utils.setDifficulty("impossible", 10), 6);
+
+  t.is(utils.setDifficulty("non-existent", 10), 10);
 });

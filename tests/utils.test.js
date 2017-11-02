@@ -92,6 +92,7 @@ test("gets a hint", t => {
 });
 
 test("set difficulty", t => {
+  t.is(utils.setDifficulty("easy", 0), 0);
   t.is(utils.setDifficulty("easy", 8), 7);
   t.is(utils.setDifficulty("medium", 8), 5);
   t.is(utils.setDifficulty("hard", 8), 4);

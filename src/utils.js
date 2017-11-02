@@ -201,6 +201,10 @@ export function getHint(answer: Answer): string {
 export function setDifficulty(difficulty: string, numberOfDigits: number) {
   let multipliers = {easy: 0.8, medium: 0.6, hard: 0.4, impossible: 0.2};
 
+  if (!multipliers[difficulty]) {
+    difficulty = "medium";
+  }
+
   if (numberOfDigits > 9) {
     multipliers = map(a => a + 0.4, multipliers);
     return Math.floor(numberOfDigits * multipliers[difficulty]);

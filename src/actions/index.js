@@ -20,7 +20,7 @@ export const startChallenge = ({timer}: {timer: number}): Action => ({
 });
 
 export const markPracticeAnswer = ({
-  correct,
+  correct
   answer,
   correctAnswer,
 }: {

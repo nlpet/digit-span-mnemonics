@@ -36,6 +36,7 @@ const learn = (state: LearnState, action: Action) => {
       return state;
     case MARK_PRACTICE_ANSWER:
       if (state.numQuestion === state.numQuestion) {
+        let state = {};
         return merge(state, {
           inProgress: false,
           ended: true,

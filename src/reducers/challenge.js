@@ -84,8 +84,6 @@ const challenge = (state: ChallengeState, action: Action) => {
       return merge(state, {
         challengeNumber: generateChallengeNumber(state.difficulty),
       });
-    default:
-      return state;
   }
 };
 

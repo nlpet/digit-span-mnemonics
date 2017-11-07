@@ -1,6 +1,5 @@
 // @flow
 
-import type {Action} from "../types";
 import type {Mode} from "../reducers/types";
 
 import * as actionTypes from "../constants/actionTypes";

@@ -13,19 +13,6 @@ import App from "./components/App";
 import reducer from "./reducers";
 import {initialState, typeConversions} from "./constants";
 
-const localStorageDeserializer = (state: string) => {
-  if (state) {
-    const jsState = JSON.parse(state);
-    mapObjIndexed((modeState, mode) => {
-      mapObjIndexed((type, variable) => {
-        jsState[mode][variable] = immutable[type](jsState[mode][variable]);
-      }, typeConversions[mode]);
-    }, typeConversions);
-
-    return jsState;
-  }
-};
-
 const enchancer = compose(
   persistState(undefined, {deserialize: localStorageDeserializer}),
 );

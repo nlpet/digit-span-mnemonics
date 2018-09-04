@@ -23,7 +23,7 @@ const challenge = (state: ChallengeState, action: Action) => {
   if (!state) return initialState.challenge;
   switch (action.type) {
     case START_CHALLENGE:
-      if (state.intervalId !== -1) clearInterval(state.intervalId);
+      if (state.intervalId != -1) clearInterval(state.intervalId);
 
       return merge(state, {
         inProgress: true,
@@ -84,8 +84,6 @@ const challenge = (state: ChallengeState, action: Action) => {
       return merge(state, {
         challengeNumber: generateChallengeNumber(state.difficulty),
       });
-    default:
-      return state;
   }
 };
 

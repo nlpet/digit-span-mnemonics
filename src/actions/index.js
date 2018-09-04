@@ -1,6 +1,5 @@
 // @flow
 
-import type {Action} from "../types";
 import type {Mode} from "../reducers/types";
 
 import * as actionTypes from "../constants/actionTypes";
@@ -21,7 +20,7 @@ export const startChallenge = ({timer}: {timer: number}): Action => ({
 });
 
 export const markPracticeAnswer = ({
-  correct,
+  correct
   answer,
   correctAnswer,
 }: {

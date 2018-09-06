@@ -13,19 +13,6 @@ export const safelyGetHtmlElementAndValue = (
   return [value, element];
 };
 
-export const numToLetter = fromJS({
-  "0": ["s", "c", "z", "x"],
-  "1": ["th", "t", "d"],
-  "2": ["n"],
-  "3": ["m"],
-  "4": ["r"],
-  "5": ["l"],
-  "6": ["tsch", "sch", "ch", "j", "g", "sh", "c", "cz", "sc", "s", "t", "z"],
-  "7": ["ch", "k", "c", "q", "g"],
-  "8": ["f", "ph", "v", "gh"],
-  "9": ["p", "b", "gh"],
-});
-
 export const lettersAndSoundsToNums: LettersAndSoundsToNums = {
   s: {num: "0", example: "assess"},
   "soft c": {num: "0", example: "acid & citrus"},
@@ -198,38 +185,5 @@ export function getHint(answer: Answer): string {
   return `No hint available for unknown ${JSON.stringify(answer)}`;
 }
 
-export function setDifficulty(difficulty: string, numberOfDigits: number) {
-  let multipliers = {easy: 0.8, medium: 0.6, hard: 0.4, impossible: 0.2};
 
-  if (!multipliers[difficulty]) {
-    difficulty = "medium";
-  }
 
-  if (numberOfDigits > 9) {
-    multipliers = map(a => a + 0.4, multipliers);
-    return Math.floor(numberOfDigits * multipliers[difficulty]);
-  }
-  return Math.ceil(numberOfDigits * multipliers[difficulty]);
-}
-
-export function getEmoji(p: number) {
-  let face = "(╯°□°）╯︵ ┻━┻) ";
-
-  if (p >= 75) {
-    face = "◉‿◉";
-  } else if (p >= 50) {
-    face = "(-‿◦)";
-  } else if (p >= 25) {
-    face = "¯\\_(ツ)_/¯";
-  }
-
-  return face;
-}
-
-export function getTimeIcon(time: number) {
-  if (time > 40) return "fa fa-hourglass-start";
-  else if (time > 20) return "fa fa-hourglass-half";
-  else if (time > 10) return "fa fa-hourglass-end";
-
-  return "fa fa-hourglass-o";
-}

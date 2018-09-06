@@ -5,25 +5,6 @@ import test from "ava";
 import * as actions from "../src/actions";
 import * as actionTypes from "../src/constants/actionTypes";
 
-test("generate action to change mode (navigation)", t => {
-  const mode = "learn";
-  const expected = {
-    type: actionTypes.CHANGE_MODE,
-    payload: {mode},
-  };
-
-  t.deepEqual(actions.changeMode({mode}), expected);
-});
-
-test("generate action to start practice (learn)", t => {
-  const expected = {
-    type: actionTypes.START_PRACTICE,
-    payload: {},
-  };
-
-  t.deepEqual(actions.startPractice(), expected);
-});
-
 test("generate action to start challenge (challenge)", t => {
   const timer = 60;
   const expected = {

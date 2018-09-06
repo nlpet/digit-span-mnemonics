@@ -29,7 +29,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch),
+  actions: bindActionCreators(actions),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Games);

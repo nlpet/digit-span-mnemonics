@@ -186,10 +186,4 @@ export function getHint(answer: Answer): string {
 }
 
 
-export function getTimeIcon(time: number) {
-  if (time > 40) return "fa fa-hourglass-start";
-  else if (time > 20) return "fa fa-hourglass-half";
-  else if (time > 10) return "fa fa-hourglass-end";
 
-  return "fa fa-hourglass-o";
-}
